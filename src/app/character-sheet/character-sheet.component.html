@@ -1,0 +1,168 @@
+<div class="app-character-sheet">
+  <form [formGroup]="setForm" class="container">
+
+    <div class="form-group col-lg-12">
+      <label for="characterName">Character Name</label>
+      <input type="text"
+            class="form-control"
+            formControlName="characterName"
+            id="characterName" required>
+    </div>
+
+    <div class="form-group col-lg-12">
+      <label for="characterClass">Character Class</label>
+      <input type="text"
+            class="form-control"
+            formControlName="characterClass"
+            id="characterClass" required>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterSrength">Strength</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterSrength"
+              id="characterSrength">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterDexterity">Dexterity</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterDexterity"
+              id="characterDexterity">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterConstitution">Constitution</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterConstitution"
+              id="characterConstitution">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="setPieces">Intelligence</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterIntelligence"
+              id="characterIntelligence">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterWisdom">Wisdom</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterWisdom"
+              id="characterWisdom">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterCharisma">Charisma</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterCharisma"
+              id="characterCharisma">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterHitPoints">Hit Points</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterHitPoints"
+              id="characterHitPoints">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterArmorClass">Armor Class</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterArmorClass"
+              id="characterArmorClass">
+      </div>
+
+      <div class="form-group col-lg-12">
+        <label for="characterAlignment">Alignment</label>
+          <select class="form-control" id="characterAlignment" formControlName="characterAlignment" required>
+              <option value="Lawful">Lawful</option>
+              <option value="Neutral">Neutral</option>
+              <option value="Chaotic">Chaotic</option>
+          </select>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterLevel">Level</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterLevel"
+              id="characterArmorLevel">
+      </div>
+  
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterSTMagicWand">Saving Throws - Magic Wand</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterSTMagicWand"
+              id="characterSTMagicWand">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterSTPoison">Saving Throws - Poison</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterSTPoison"
+              id="characterSTPoison">
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-12">
+        <label for="characterSTParalysis">Saving Throws - Paralysis</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterSTParalysis"
+              id="characterSTParalysis">
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+          <label for="characterSTDragonBreath">Saving Throws - Dragon Breath</label>
+          <input type="number"
+                class="form-control"
+                formControlName="characterSTDragonBreath"
+                id="characterSTDragonBreath">
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+          <label for="characterSTSpells">Saving Throws - Spells</label>
+          <input type="number"
+                class="form-control"
+                formControlName="characterSTSpells"
+                id="characterSTSpells">
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-12">
+          <label for="characterSTEquipment">Saving Throws - Equipment</label>
+          <input type="number"
+                class="form-control"
+                formControlName="characterSTEquipment"
+                id="characterSTEquipment">
+        </div>
+      
+        <div class="row px-3">
+          <button type="submit" class="btn btn-success btn-block" (click)="addSet()">Add Set To Collection</button>
+        </div>
+  </form>
+</div>
