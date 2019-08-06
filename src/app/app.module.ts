@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { DiceService } from './services/dice.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -15,7 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [DiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

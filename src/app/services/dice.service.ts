@@ -42,4 +42,11 @@ export class DiceService {
       console.log('twenty sided', twentySidedDie);
       return twentySidedDie;
   }
+
+  SixSidedThreeRolls(){
+    const roll1 = this.sixSidedDieFunc();
+    const roll2 = this.sixSidedDieFunc();
+    const roll3 = this.sixSidedDieFunc();
+    return roll1 + roll2 + roll3;
+   }
 }

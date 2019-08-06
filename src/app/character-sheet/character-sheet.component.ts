@@ -43,6 +43,7 @@ export class CharacterSheetComponent implements OnInit {
     });
 
     this.testDice();
+    this.characterSheetForm.patchValue({characterSrength: this.diceService.SixSidedThreeRolls()});
   }
 
   addCharacter() {
