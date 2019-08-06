@@ -42,8 +42,12 @@ export class CharacterSheetComponent implements OnInit {
       disabled: [false]
     });
 
-    this.testDice();
     this.characterSheetForm.patchValue({characterSrength: this.diceService.SixSidedThreeRolls()});
+    this.characterSheetForm.patchValue({characterDexterity: this.diceService.SixSidedThreeRolls()});
+    this.characterSheetForm.patchValue({characterConstitution: this.diceService.SixSidedThreeRolls()});
+    this.characterSheetForm.patchValue({characterIntelligence: this.diceService.SixSidedThreeRolls()});
+    this.characterSheetForm.patchValue({characterWisdom: this.diceService.SixSidedThreeRolls()});
+    this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
 
   addCharacter() {

@@ -15,7 +15,6 @@ export class DiceService {
 
   sixSidedDieFunc() {
       const sixSidedDie =  Math.floor(Math.random() * 6) + 1;
-      console.log('six sided', sixSidedDie);
       return sixSidedDie;
   }
 
