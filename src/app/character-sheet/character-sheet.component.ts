@@ -7,12 +7,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./character-sheet.component.scss']
 })
 export class CharacterSheetComponent implements OnInit {
-  public characterSheet: FormGroup;
+  public characterSheetForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this.characterSheet = this.formBuilder.group({
+
+    this.characterSheetForm = this.formBuilder.group({
       characterName: [
         '',
         Validators.compose([Validators.required])
@@ -37,35 +38,30 @@ export class CharacterSheetComponent implements OnInit {
       characterSTDragonBreath: '',
       characterSTSpells: '',
       characterEquipment: '',
+      disabled: [false]
     });
   }
 
-  addSet() {
+  addCharacter() {
     let newCharacter;
-    newCharacter = {characterName: this.characterSheet.get('characterName').value,
-            characterClass : this.characterSheet.get('characterClass').value,
-            characterSrength : this.characterSheet.get('characterSrength').value,
-            characterDexterity : this.characterSheet.get('characterDexterity').value,
-            characterConstitution : this.characterSheet.get('characterConstitution').value,
-            characterIntelligence: this.characterSheet.get('characterIntelligence').value,
-            characterWisdom: this.characterSheet.get('characterWisdom').value,
-            characterCharisma: this.characterSheet.get('characterCharisma').value,
-            characterHitPoints: this.characterSheet.get('characterHitPoints').value,
-            characterArmorClass: this.characterSheet.get('characterArmorClass').value,
-            characterAlignment: this.characterSheet.get('characterAlignment').value,
-            characterLevel: this.characterSheet.get('characterLevel').value,
-            characterSTPoison: this.characterSheet.get('characterSTPoison').value,
-            characterSTMagicWand: this.characterSheet.get('characterSTMagicWand').value,
-            characterSTParalysis: this.characterSheet.get('characterSTParalysis').value,
-            characterSTDragonBreath: this.characterSheet.get('characterSTDragonBreath').value,
-            characterSTSpells: this.characterSheet.get('characterSTSpells').value,
-            characterEquipment: this.characterSheet.get('characterEquipment').value,
-    }
-    this.dbGateway.addToCollection(newCharacter)
-      .subscribe(set => {
-        this.displayFormSuccess = true;
-        this.setForm.reset();
-      })
+    newCharacter = {characterName: this.characterSheetForm.get('characterName').value,
+      characterClass : this.characterSheetForm.get('characterClass').value,
+      characterSrength : this.characterSheetForm.get('characterSrength').value,
+      characterDexterity : this.characterSheetForm.get('characterDexterity').value,
+      characterConstitution : this.characterSheetForm.get('characterConstitution').value,
+      characterIntelligence: this.characterSheetForm.get('characterIntelligence').value,
+      characterWisdom: this.characterSheetForm.get('characterWisdom').value,
+      characterCharisma: this.characterSheetForm.get('characterCharisma').value,
+      characterHitPoints: this.characterSheetForm.get('characterHitPoints').value,
+      characterArmorClass: this.characterSheetForm.get('characterArmorClass').value,
+      characterAlignment: this.characterSheetForm.get('characterAlignment').value,
+      characterLevel: this.characterSheetForm.get('characterLevel').value,
+      characterSTPoison: this.characterSheetForm.get('characterSTPoison').value,
+      characterSTMagicWand: this.characterSheetForm.get('characterSTMagicWand').value,
+      characterSTParalysis: this.characterSheetForm.get('characterSTParalysis').value,
+      characterSTDragonBreath: this.characterSheetForm.get('characterSTDragonBreath').value,
+      characterSTSpells: this.characterSheetForm.get('characterSTSpells').value,
+      characterEquipment: this.characterSheetForm.get('characterEquipment').value,
+    };
   }
-
 }
