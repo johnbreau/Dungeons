@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { DiceService } from '../services/dice.service';
+import { DiceService } from '../../services/dice.service';
 
 @Component({
   selector: 'app-character-sheet',
@@ -9,11 +9,13 @@ import { DiceService } from '../services/dice.service';
 })
 export class CharacterSheetComponent implements OnInit {
   public characterSheetForm: FormGroup;
+  bodyText: string;
 
   constructor(private formBuilder: FormBuilder,
               private diceService: DiceService) { }
 
   ngOnInit() {
+    this.bodyText = 'This text can be updated in modal 1';
     this.characterSheetForm = this.formBuilder.group({
       characterName: [
         '',
