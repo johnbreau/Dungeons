@@ -12,10 +12,15 @@
 
     <div class="form-group col-lg-12">
       <label for="characterClass">Character Class</label>
-      <input type="text"
-            class="form-control"
-            formControlName="characterClass"
-            id="characterClass" required>
+        <select class="form-control" id="characterClass" formControlName="characterClass" required>
+            <option value="Cleric">Cleric</option>
+            <option value="Dwarf">Dwarf</option>
+            <option value="Elf">Elf</option>
+            <option value="Fighter">Fighter</option>
+            <option value="Halfling">Halfling</option>
+            <option value="Magic-User">Magic-User</option>
+            <option value="Thief">Thief</option>
+        </select>
     </div>
 
     <div class="form-group col-lg-12">
@@ -69,6 +74,22 @@
 
         <div class="form-group col-lg-12">
         <label for="characterHitPoints">Hit Points</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterHitPoints"
+              id="characterHitPoints">
+      </div>
+
+      <div class="form-group col-lg-12">
+        <label for="characterHitPoints">Experience Points</label>
+        <input type="number"
+              class="form-control"
+              formControlName="characterHitPoints"
+              id="characterHitPoints">
+      </div>
+
+      <div class="form-group col-lg-12">
+        <label for="characterHitPoints">Gold</label>
         <input type="number"
               class="form-control"
               formControlName="characterHitPoints"
