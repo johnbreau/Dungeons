@@ -79,21 +79,32 @@ export class CharacterSheetComponent implements OnInit {
     };
   }
 
-  experienceLevelUp(characterType) {
-    if (characterType === 'Magic-user') {
+  experienceLevelUp() {
+    const level = this.characterSheetForm.get('characterClass').value;
+    if (level === undefined || level === null || level === '') {
+      window.alert('please select a character class');
+    }
+    if (level === 'Magic-user') {
         const newPoints = this.diceService.sixSidedDieFunc();
+        console.log(newPoints);
     }
-    if (characterType === 'Cleric' || characterType === 'Thief' || characterType === 'Elf') {
+    if (level ===  'Cleric' ||
+        level === 'Thief' ||
+        level === 'Elf') {
       const newPoints = this.diceService.eightSidedDieFunc();
+      console.log(newPoints);
     }
-    if (characterType === 'Halfling') {
+    if (level  === 'Halfling') {
       const newPoints = (this.diceService.eightSidedDieFunc() + 1);
+      console.log(newPoints);
     }
-    if (characterType === 'Dwarf') {
+    if (level  === 'Dwarf') {
       const newPoints = (this.diceService.eightSidedDieFunc() + 2);
+      console.log(newPoints);
     }
-    if (characterType === 'Fighter') {
+    if (level === 'Fighter') {
       const newPoints = (this.diceService.tenSidedDieFunc());
+      console.log(newPoints);
     }
   }
 
