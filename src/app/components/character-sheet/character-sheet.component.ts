@@ -79,6 +79,24 @@ export class CharacterSheetComponent implements OnInit {
     };
   }
 
+  experienceLevelUp(characterType) {
+    if (characterType === 'Magic-user') {
+        const newPoints = this.diceService.sixSidedDieFunc();
+    }
+    if (characterType === 'Cleric' || characterType === 'Thief' || characterType === 'Elf') {
+      const newPoints = this.diceService.eightSidedDieFunc();
+    }
+    if (characterType === 'Halfling') {
+      const newPoints = (this.diceService.eightSidedDieFunc() + 1);
+    }
+    if (characterType === 'Dwarf') {
+      const newPoints = (this.diceService.eightSidedDieFunc() + 2);
+    }
+    if (characterType === 'Fighter') {
+      const newPoints = (this.diceService.tenSidedDieFunc());
+    }
+  }
+
   testDice() {
     console.log('eight', this.diceService.eightSidedDieFunc());
   }
