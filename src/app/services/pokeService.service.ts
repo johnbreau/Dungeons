@@ -10,7 +10,7 @@ export class PokeService {
  getPokemonByName(pokeNumber) {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    this.http.get(this.baseURL + 'pokemon/' + pokeNumber)
-      .subscribe(data => console.log('data', data));
+    return this.http.get(this.baseURL + 'pokemon/' + pokeNumber);
+      // .subscribe(data => console.log('data', data));
   }
 }

@@ -9,11 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { DiceService } from './services/dice.service';
 import { PokeService } from './services/pokeService.service';
 import { AbilityScoreAdjustmentService } from './services/abilityScoreAdjustment.service';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CharacterSheetComponent,
+    PokemonComponent,
   ],
   imports: [
     BrowserModule,

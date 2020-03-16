@@ -1,0 +1,26 @@
+<div class="app-pokemon">
+  <h2>Pokemon</h2>
+  <form [formGroup]="pokemonForm" class="container">
+
+    <div class="form-group col-lg-12">
+      <label for="pokemonName">Pokemon Name</label>
+      <input type="text"
+            class="form-control"
+            formControlName="pokemonName"
+            id="pokemonName" required>
+    </div>
+
+    <div class="row px-3">
+      <button type="submit" class="btn btn-success btn-block" (click)="getPokemon()">Get Pokemon</button>
+    </div>
+</form>
+
+<div *ngIf="myData">
+  <h4>{{myData.name}}</h4>
+  <img class="pokemon__image" src="{{myData.sprites.front_shiny}}"/>
+  <img class="pokemon__image" src="{{myData.sprites.back_shiny}}"/>
+</div>
+
+<div *ngIf="!myData">
+  <h4>Please Enter a REAL Pokemon</h4>
+</div>
