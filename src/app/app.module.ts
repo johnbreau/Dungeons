@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { DiceService } from './services/dice.service';
+import { DDService } from './services/dd.service';
 import { PokeService } from './services/pokeService.service';
 import { AbilityScoreAdjustmentService } from './services/abilityScoreAdjustment.service';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
@@ -23,7 +24,7 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [DiceService, AbilityScoreAdjustmentService, PokeService],
+  providers: [DiceService, AbilityScoreAdjustmentService, PokeService, DDService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

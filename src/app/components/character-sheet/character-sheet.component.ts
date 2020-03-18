@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiceService } from '../../services/dice.service';
+import { DDService } from '../../services/dd.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-character-sheet',
@@ -9,9 +11,13 @@ import { DiceService } from '../../services/dice.service';
 })
 export class CharacterSheetComponent implements OnInit {
   public characterSheetForm: FormGroup;
-  bodyText: string;
+  public bodyText: string;
+  public abilityScoreIndex = 'str';
+  public abilityScoreData: {};
+  public characterClass: {};
 
   constructor(private formBuilder: FormBuilder,
+              private dandDservice: DDService,
               private diceService: DiceService) { }
 
   ngOnInit() {
@@ -54,6 +60,21 @@ export class CharacterSheetComponent implements OnInit {
     this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterContentInit() {
+    this.getAbilityScores(this.abilityScoreIndex);
+  }
+
+  getAbilityScores(index) {
+    this.dandDservice.getAbilityScore(this.abilityScoreIndex)
+    .subscribe((res: Response) => {
+      this.abilityScoreData = res;
+      // console.log('data', this.abilityScoreData$);
+    }, error => {
+      console.log(error);
+    });
+  }
+
   addCharacter() {
     let newCharacter;
     newCharacter = {characterName: this.characterSheetForm.get('characterName').value,
@@ -77,6 +98,13 @@ export class CharacterSheetComponent implements OnInit {
       characterSTSpells: this.characterSheetForm.get('characterSTSpells').value,
       characterEquipment: this.characterSheetForm.get('characterEquipment').value,
     };
+    this.dandDservice.getCharacterClass(newCharacter.characterClass)
+    .subscribe((res: Response) => {
+      this.characterClass = res;
+      console.log('data', this.characterClass);
+    }, error => {
+      console.log(error);
+    });
   }
 
   experienceLevelUp() {
