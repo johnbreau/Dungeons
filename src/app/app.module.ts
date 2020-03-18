@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
@@ -119,9 +120,11 @@ const modules: any[] = [
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RouterModule,
     ...modules,
   ],
     exports: [
+      HeaderComponent,
       ...modules
     ],
   providers: [DiceService, AbilityScoreAdjustmentService, PokeService, DDService],
