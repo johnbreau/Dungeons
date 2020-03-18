@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './router/app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
@@ -120,7 +120,7 @@ const modules: any[] = [
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    RouterModule,
+    AppRoutingModule,
     ...modules,
   ],
     exports: [
