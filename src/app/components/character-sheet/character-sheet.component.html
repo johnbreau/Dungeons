@@ -1,172 +1,224 @@
-<div class="app-character-sheet">
-  <h2>character sheet</h2>
-  <form [formGroup]="characterSheetForm" class="container">
+<div class="character-sheet">
+  <mat-card-title>Character Sheet</mat-card-title>
+  <form [formGroup]="characterSheetForm" class="character-sheet__form-container">
 
-    <div class="form-group col-lg-12">
-      <label for="characterName">Character Name</label>
-      <input type="text"
-            class="form-control"
-            formControlName="characterName"
-            id="characterName" required>
-    </div>
-
-    <div class="form-group col-lg-12">
-      <label for="characterClass">Character Class</label>
-        <select class="form-control" id="characterClass" formControlName="characterClass" required>
-            <option value="Cleric">Cleric</option>
-            <option value="Dwarf">Dwarf</option>
-            <option value="Elf">Elf</option>
-            <option value="Fighter">Fighter</option>
-            <option value="Halfling">Halfling</option>
-            <option value="Magic-User">Magic-User</option>
-            <option value="Thief">Thief</option>
-        </select>
-    </div>
-    <div>
-      <div>{{characterClass}}</div>
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+          <mat-label for="characterName">Character Name</mat-label>
+          <input matInput
+                type="text"
+                class="form-control"
+                formControlName="characterName"
+                id="characterName" required>
+      </mat-form-field>
+      <mat-card>{{characterClass}}</mat-card>
     </div>
 
-    <div class="form-group col-lg-12">
-      <label for="characterSrength">Strength</label>
-      <input type="number"
-            class="form-control"
-            formControlName="characterSrength"
-            id="characterSrength">
-    </div>
-    <div>
-      <div>{{abilityScoreData?.desc}}</div>
-    </div>
-
-    <div class="form-group col-lg-12">
-      <label for="characterDexterity">Dexterity</label>
-      <input type="number"
-            class="form-control"
-            formControlName="characterDexterity"
-            id="characterDexterity">
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+        <mat-label for="characterClass">Character Class</mat-label>
+          <mat-select class="form-control" id="characterClass" formControlName="characterClass" required>
+              <mat-option value="Cleric">Cleric</mat-option>
+              <mat-option value="Dwarf">Dwarf</mat-option>
+              <mat-option value="Elf">Elf</mat-option>
+              <mat-option value="Fighter">Fighter</mat-option>
+              <mat-option value="Halfling">Halfling</mat-option>
+              <mat-option value="Magic-User">Magic-User</mat-option>
+              <mat-option value="Thief">Thief</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <mat-card>{{characterClass}}</mat-card>
     </div>
 
-    <div class="form-group col-lg-12">
-    <label for="characterConstitution">Constitution</label>
-    <input type="number"
-          class="form-control"
-          formControlName="characterConstitution"
-          id="characterConstitution">
-    </div>
-
-    <div class="form-group col-lg-12">
-      <label for="setPieces">Intelligence</label>
-      <input type="number"
-            class="form-control"
-            formControlName="characterIntelligence"
-            id="characterIntelligence">
-    </div>
-
-    <div class="form-group col-lg-12">
-      <label for="characterWisdom">Wisdom</label>
-      <input type="number"
-            class="form-control"
-            formControlName="characterWisdom"
-            id="characterWisdom">
-    </div>
-
-        <div class="form-group col-lg-12">
-        <label for="characterCharisma">Charisma</label>
-        <input type="number"
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+        <mat-label for="characterSrength">Strength</mat-label>
+        <input matInput 
+              type="number"
               class="form-control"
-              formControlName="characterCharisma"
-              id="characterCharisma">
+              formControlName="characterSrength"
+              id="characterSrength">
+        </mat-form-field>
+        <mat-card>{{abilityScoreData?.desc}}</mat-card>
+    </div>
+
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+        <mat-label for="characterDexterity">Dexterity</mat-label>
+        <input matInput
+              type="number"
+              class="form-control"
+              formControlName="characterDexterity"
+              id="characterDexterity">
+      </mat-form-field>
+    </div>
+
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+        <mat-label for="characterConstitution">Constitution</mat-label>
+        <input matInput
+              type="number"
+              class="form-control"
+              formControlName="characterConstitution"
+              id="characterConstitution">
+        </mat-form-field>
+    </div>
+
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+        <mat-label for="setPieces">Intelligence</mat-label>
+        <input matInput
+              type="number"
+              class="form-control"
+              formControlName="characterIntelligence"
+              id="characterIntelligence">
+      </mat-form-field>
+    </div>
+
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+        <mat-label for="characterWisdom">Wisdom</mat-label>
+        <input matInput
+              type="number"
+              class="form-control"
+              formControlName="characterWisdom"
+              id="characterWisdom">
+        </mat-form-field>
+    </div>
+
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+          <mat-label for="characterCharisma">Charisma</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterCharisma"
+                id="characterCharisma">
+          </mat-form-field>
       </div>
 
 
-        <div class="form-group col-lg-12">
-        <label for="characterHitPoints">Hit Points</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterHitPoints"
-              id="characterHitPoints">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterHitPoints">Hit Points</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterHitPoints"
+                id="characterHitPoints">
+          </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterExperiencePoints">Experience Points</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterExperiencePoints"
-              id="characterExperiencePoints">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterExperiencePoints">Experience Points</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterExperiencePoints"
+                id="characterExperiencePoints">
 
-      <button (click)="experienceLevelUp()">Experience level up</button>
+          <button (click)="experienceLevelUp()">Experience level up</button>
+        </mat-form-field>
       </div>
   
-      <div class="form-group col-lg-12">
-        <label for="characterArmorClass">Armor Class</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterArmorClass"
-              id="characterArmorClass">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterArmorClass">Armor Class</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterArmorClass"
+                id="characterArmorClass">
+        </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterAlignment">Alignment</label>
-          <select class="form-control" id="characterAlignment" formControlName="characterAlignment" required>
-              <option value="Lawful">Lawful</option>
-              <option value="Neutral">Neutral</option>
-              <option value="Chaotic">Chaotic</option>
-          </select>
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterAlignment">Alignment</mat-label>
+            <mat-select class="form-control" id="characterAlignment" formControlName="characterAlignment" required>
+                <option value="Lawful">Lawful</option>
+                <option value="Neutral">Neutral</option>
+                <option value="Chaotic">Chaotic</option>
+            </mat-select>
+          </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterLevel">Level</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterLevel"
-              id="characterArmorLevel">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterLevel">Level</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterLevel"
+                id="characterArmorLevel">
+        </mat-form-field>
       </div>
   
-      <div class="form-group col-lg-12">
-        <label for="characterSTMagicWand">Saving Throws - Magic Wand</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterSTMagicWand"
-              id="characterSTMagicWand">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterSTMagicWand">Saving Throws - Magic Wand</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterSTMagicWand"
+                id="characterSTMagicWand">
+        </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterSTPoison">Saving Throws - Poison</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterSTPoison"
-              id="characterSTPoison">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterSTPoison">Saving Throws - Poison</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterSTPoison"
+                id="characterSTPoison">
+          </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterSTParalysis">Saving Throws - Paralysis</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterSTParalysis"
-              id="characterSTParalysis">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterSTParalysis">Saving Throws - Paralysis</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterSTParalysis"
+                id="characterSTParalysis">
+          </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterSTDragonBreath">Saving Throws - Dragon Breath</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterSTDragonBreath"
-              id="characterSTDragonBreath">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterSTDragonBreath">Saving Throws - Dragon Breath</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterSTDragonBreath"
+                id="characterSTDragonBreath">
+          </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterSTSpells">Saving Throws - Spells</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterSTSpells"
-              id="characterSTSpells">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterSTSpells">Saving Throws - Spells</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterSTSpells"
+                id="characterSTSpells">
+        </mat-form-field>
       </div>
 
-      <div class="form-group col-lg-12">
-        <label for="characterEquipment">Saving Throws - Equipment</label>
-        <input type="number"
-              class="form-control"
-              formControlName="characterEquipment"
-              id="characterEquipment">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterEquipment">Saving Throws - Equipment</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterEquipment"
+                id="characterEquipment">
+          </mat-form-field>
       </div>
       
         <div class="row px-3">
