@@ -20,14 +20,16 @@
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CharacterSheetComponent } from '../components/character-sheet/character-sheet.component';
+import { CampaignComponent } from '../components/campaign/campaign.component';
 import { AppComponent } from '../app.component';
-import { RoutesConfig } from '../configs/routes.config';
+import { HomeComponent } from '../components/home/home.component';
 
-const routesNames = RoutesConfig.routesNames;
 
 const routes: Routes = [
-  {path: routesNames.home, component: AppComponent, pathMatch: 'full'},
-  {path: 'en', redirectTo: ''}, // because english language is the default one
+  {path: 'home' , component: HomeComponent},
+  {path: 'character' , component: CharacterSheetComponent},
+  {path: 'campaign' , component: CampaignComponent},
 ];
 
 @NgModule({

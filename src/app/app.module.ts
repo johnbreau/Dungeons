@@ -4,6 +4,9 @@ import { AppRoutingModule } from './router/app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
+import { HeaderComponent } from './header/header.component';
+import { HomeComponent } from './components/home/home.component';
+import { CampaignComponent } from './components/campaign/campaign.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -54,7 +57,6 @@ import {
   MatTreeModule,
 } from '@angular/material';
 
-import { HeaderComponent } from './header/header.component';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 const modules: any[] = [
@@ -113,6 +115,8 @@ const modules: any[] = [
     CharacterSheetComponent,
     PokemonComponent,
     HeaderComponent,
+    CampaignComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
