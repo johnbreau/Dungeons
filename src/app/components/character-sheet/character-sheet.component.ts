@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiceService } from '../../services/dice.service';
 import { DDService } from '../../services/dd.service';
@@ -10,17 +10,22 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./character-sheet.component.scss']
 })
 export class CharacterSheetComponent implements OnInit {
+  @Output() select: EventEmitter<any>;
+
   public characterSheetForm: FormGroup;
   public bodyText: string;
   public abilityScoreIndex = 'str';
   public abilityScoreData: {};
   public characterClass: {};
+  public selectedCharacterClass: string;
 
   constructor(private formBuilder: FormBuilder,
               private dandDservice: DDService,
               private diceService: DiceService) { }
 
   ngOnInit() {
+    this.dandDservice.getCharacterClass();
+
     this.bodyText = 'This text can be updated in modal 1';
     this.characterSheetForm = this.formBuilder.group({
       characterName: [
@@ -51,13 +56,6 @@ export class CharacterSheetComponent implements OnInit {
       characterEquipment: '',
       disabled: [false]
     });
-
-    this.characterSheetForm.patchValue({characterSrength: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterDexterity: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterConstitution: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterIntelligence: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterWisdom: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -73,6 +71,79 @@ export class CharacterSheetComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  onCharacterSelect(val) {
+    switch (this.selectedCharacterClass) {
+      case 'barbarian': {
+        console.log('barbarian selected');
+        break;
+      }
+      case 'bard': {
+        console.log('bard selected');
+        break;
+      }
+      case 'cleric': {
+        console.log('cleric selected');
+        break;
+      }
+      case 'druid': {
+        console.log('druid selected');
+        break;
+      }
+      case 'fighter': {
+        console.log('fighter selected');
+        break;
+      }
+      case 'monk': {
+        console.log('monk selected');
+        break;
+      }
+      case 'paladin': {
+        console.log('paladin selected');
+        break;
+      }
+      case 'ranger': {
+        console.log('ranger selected');
+        break;
+      }
+      case 'rogue': {
+        console.log('rogue selected');
+        break;
+      }
+      case 'sorcerer': {
+        console.log('sorcerer selected');
+        break;
+      }
+      case 'warlock': {
+        console.log('warlock selected');
+        break;
+      }
+    }
+  }
+
+  strengthRoll() {
+    this.characterSheetForm.patchValue({characterSrength: this.diceService.SixSidedThreeRolls()});
+  }
+
+  dexterityRoll() {
+    this.characterSheetForm.patchValue({characterDexterity: this.diceService.SixSidedThreeRolls()});
+  }
+
+  constitutionRoll() {
+    this.characterSheetForm.patchValue({characterConstitution: this.diceService.SixSidedThreeRolls()});
+  }
+
+  intelligenceRoll() {
+    this.characterSheetForm.patchValue({characterIntelligence: this.diceService.SixSidedThreeRolls()});
+  }
+
+  wisdomRoll() {
+    this.characterSheetForm.patchValue({characterWisdom: this.diceService.SixSidedThreeRolls()});
+  }
+
+  charismaRoll()  {
+    this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
 
   addCharacter() {

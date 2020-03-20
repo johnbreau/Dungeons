@@ -17,6 +17,7 @@ import { AbilityScoreAdjustmentService } from './services/abilityScoreAdjustment
 import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+import { ObserversModule } from '@angular/cdk/observers';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
@@ -107,6 +108,7 @@ const modules: any[] = [
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  ObserversModule
 ];
 
 @NgModule({

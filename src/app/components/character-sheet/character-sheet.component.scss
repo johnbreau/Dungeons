@@ -9,7 +9,19 @@
     flex-direction: column;
   }
 
+  &__form-row {
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+
+  }
+
   &__form-section {
+    width: 100%;
     margin: 1em 0;
+  }
+
+  &__form-row--button {
+    margin: 15px 20px;
   }
 }

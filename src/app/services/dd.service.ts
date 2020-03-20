@@ -13,9 +13,12 @@ export class DDService {
     return this.http.get(this.baseURL + 'ability-scores/' + index);
   }
 
-  getCharacterClass(index) {
+  getCharacterClass() {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
-    return this.http.get(this.baseURL + 'classes/' + index);
+    // return this.http.get(this.baseURL + 'classes');
+    this.http.get(this.baseURL + 'classes')
+      .subscribe(data => console.log('classes', data));
+
   }
 }

@@ -17,53 +17,67 @@
     <div class="character-sheet__form-section">
       <mat-form-field appearance="fill">
         <mat-label for="characterClass">Character Class</mat-label>
-          <mat-select class="form-control" id="characterClass" formControlName="characterClass" required>
-              <mat-option value="Cleric">Cleric</mat-option>
-              <mat-option value="Dwarf">Dwarf</mat-option>
-              <mat-option value="Elf">Elf</mat-option>
-              <mat-option value="Fighter">Fighter</mat-option>
-              <mat-option value="Halfling">Halfling</mat-option>
-              <mat-option value="Magic-User">Magic-User</mat-option>
-              <mat-option value="Thief">Thief</mat-option>
+          <mat-select class="form-control" id="characterClass" formControlName="characterClass" [(ngModel)]="selectedCharacterClass" (ngModelChange)="onCharacterSelect()" required>
+              <mat-option value="barbarian">Barbarian</mat-option>
+              <mat-option value="bard">Bard</mat-option>
+              <mat-option value="cleric">Cleric</mat-option>
+              <mat-option value="druid">Druid</mat-option>
+              <mat-option value="fighter">Fighter</mat-option>
+              <mat-option value="monk">Monk</mat-option>
+              <mat-option value="paladin">Paladin</mat-option>
+              <mat-option value="ranger">Ranger</mat-option>
+              <mat-option value="rogue">Rogue</mat-option>
+              <mat-option value="sorcerer">Sorcerer</mat-option>
+              <mat-option value="warlock">Warlock</mat-option>
           </mat-select>
       </mat-form-field>
       <mat-card>{{characterClass}}</mat-card>
     </div>
 
-    <div class="character-sheet__form-section">
-      <mat-form-field appearance="fill">
-        <mat-label for="characterSrength">Strength</mat-label>
-        <input matInput 
-              type="number"
-              class="form-control"
-              formControlName="characterSrength"
-              id="characterSrength">
+    <div class="character-sheet__form-row">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterSrength">Strength</mat-label>
+          <input matInput 
+                type="number"
+                class="form-control"
+                formControlName="characterSrength"
+                id="characterSrength">
+          </mat-form-field>
+          <mat-card>{{abilityScoreData?.desc}}</mat-card>
+        </div>
+        <button class="character-sheet__form-row--button" mat-stroked-button (click)="strengthRoll()">Roll</button>
+      </div>
+
+    <div class="character-sheet__form-row">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterDexterity">Dexterity</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterDexterity"
+                id="characterDexterity">
         </mat-form-field>
-        <mat-card>{{abilityScoreData?.desc}}</mat-card>
+      </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="dexterityRoll()">Roll</button>
     </div>
 
-    <div class="character-sheet__form-section">
-      <mat-form-field appearance="fill">
-        <mat-label for="characterDexterity">Dexterity</mat-label>
-        <input matInput
-              type="number"
-              class="form-control"
-              formControlName="characterDexterity"
-              id="characterDexterity">
-      </mat-form-field>
+    <div class="character-sheet__form-row">
+      <div class="character-sheet__form-section">
+        <mat-form-field appearance="fill">
+          <mat-label for="characterConstitution">Constitution</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterConstitution"
+                id="characterConstitution">
+          </mat-form-field>
+      </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
     </div>
 
-    <div class="character-sheet__form-section">
-      <mat-form-field appearance="fill">
-        <mat-label for="characterConstitution">Constitution</mat-label>
-        <input matInput
-              type="number"
-              class="form-control"
-              formControlName="characterConstitution"
-              id="characterConstitution">
-        </mat-form-field>
-    </div>
-
+    <div class="character-sheet__form-row">
     <div class="character-sheet__form-section">
       <mat-form-field appearance="fill">
         <mat-label for="setPieces">Intelligence</mat-label>
@@ -74,7 +88,10 @@
               id="characterIntelligence">
       </mat-form-field>
     </div>
+    <button class="character-sheet__form-row--button" mat-stroked-button (click)="intelligenceRoll()">Roll</button>
+  </div>
 
+  <div class="character-sheet__form-row">
     <div class="character-sheet__form-section">
       <mat-form-field appearance="fill">
         <mat-label for="characterWisdom">Wisdom</mat-label>
@@ -85,7 +102,10 @@
               id="characterWisdom">
         </mat-form-field>
     </div>
+    <button class="character-sheet__form-row--button" mat-stroked-button (click)="wisdomRoll()">Roll</button>
+  </div>
 
+  <div class="character-sheet__form-row">
     <div class="character-sheet__form-section">
       <mat-form-field appearance="fill">
           <mat-label for="characterCharisma">Charisma</mat-label>
@@ -96,8 +116,10 @@
                 id="characterCharisma">
           </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="charismaRoll()">Roll</button>
+    </div>
 
-
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterHitPoints">Hit Points</mat-label>
@@ -108,7 +130,10 @@
                 id="characterHitPoints">
           </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterExperiencePoints">Experience Points</mat-label>
@@ -118,10 +143,13 @@
                 formControlName="characterExperiencePoints"
                 id="characterExperiencePoints">
 
-          <button (click)="experienceLevelUp()">Experience level up</button>
+          <button mat-stroked-button (click)="experienceLevelUp()">Experience level up</button>
         </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
   
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterArmorClass">Armor Class</mat-label>
@@ -132,7 +160,10 @@
                 id="characterArmorClass">
         </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterAlignment">Alignment</mat-label>
@@ -143,7 +174,10 @@
             </mat-select>
           </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterLevel">Level</mat-label>
@@ -154,7 +188,10 @@
                 id="characterArmorLevel">
         </mat-form-field>
       </div>
-  
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
+    
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterSTMagicWand">Saving Throws - Magic Wand</mat-label>
@@ -165,7 +202,10 @@
                 id="characterSTMagicWand">
         </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterSTPoison">Saving Throws - Poison</mat-label>
@@ -176,7 +216,10 @@
                 id="characterSTPoison">
           </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterSTParalysis">Saving Throws - Paralysis</mat-label>
@@ -187,7 +230,10 @@
                 id="characterSTParalysis">
           </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterSTDragonBreath">Saving Throws - Dragon Breath</mat-label>
@@ -198,7 +244,10 @@
                 id="characterSTDragonBreath">
           </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterSTSpells">Saving Throws - Spells</mat-label>
@@ -209,7 +258,10 @@
                 id="characterSTSpells">
         </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
 
+    <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field appearance="fill">
           <mat-label for="characterEquipment">Saving Throws - Equipment</mat-label>
@@ -220,9 +272,11 @@
                 id="characterEquipment">
           </mat-form-field>
       </div>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
       
         <div class="row px-3">
-          <button type="submit" class="btn btn-success btn-block" (click)="addSet()">Add Set To Collection</button>
+          <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
         </div>
   </form>
 </div>
