@@ -10,7 +10,6 @@
   }
 
   &__form-row {
-    width:100%;
     display: flex;
     justify-content: space-between;
 
@@ -23,5 +22,28 @@
 
   &__form-row--button {
     margin: 15px 20px;
+  }
+
+  &__form-row--button-submit {
+    text-transform: uppercase;
+  }
+
+  &__list-label {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.6 );
+    padding: 5px 0;
+  }
+
+  &__list-item {
+    padding: 2px 0;
+  }
+
+  &__form-row--list {
+    background-color: rgba(0, 0, 0, .04);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    margin: 0 0 1em 0;
+    padding: 0 11px;
   }
 }

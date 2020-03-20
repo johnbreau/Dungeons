@@ -11,7 +11,6 @@
                 formControlName="characterName"
                 id="characterName" required>
       </mat-form-field>
-      <mat-card>{{characterClass}}</mat-card>
     </div>
 
     <div class="character-sheet__form-section">
@@ -33,12 +32,21 @@
       </mat-form-field>
     </div>
 
-    <div *ngIf="startingEquipment" class="character-sheet__form-row">
+    <div class="character-sheet__form-section">
+      <mat-form-field appearance="fill">
+          <mat-label for="characterName">Level</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="level"
+                id="level" required>
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="startingEquipment" class="character-sheet__form-row character-sheet__form-row--list">
       <div class="character-sheet__form-section">
-        <mat-card>
-          <h4>Equipment List</h4>
-          <div *ngFor="let equipment of startingEquipment.starting_equipment">{{equipment.item.name}}</div>
-        </mat-card>
+          <div class="character-sheet__list-label">Equipment List</div>
+          <div class="character-sheet__list-item" *ngFor="let equipment of startingEquipment.starting_equipment">{{equipment.item.name}}</div>
       </div>
     </div>
 
@@ -184,20 +192,6 @@
       </div>
       <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
     </div>
-
-    <div class="character-sheet__form-row">
-      <div class="character-sheet__form-section">
-        <mat-form-field appearance="fill">
-          <mat-label for="characterLevel">Level</mat-label>
-          <input matInput
-                type="number"
-                class="form-control"
-                formControlName="characterLevel"
-                id="characterArmorLevel">
-        </mat-form-field>
-      </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
-    </div>
     
     <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
@@ -284,7 +278,7 @@
     </div>
       
         <div class="row px-3">
-          <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+          <button class="character-sheet__form-row--button-submit" mat-stroked-button (click)="constitutionRoll()">Save Character</button>
         </div>
   </form>
 </div>

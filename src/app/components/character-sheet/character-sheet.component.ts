@@ -77,8 +77,9 @@ export class CharacterSheetComponent implements OnInit {
       case 'barbarian': {
         console.log('barbarian selected');
         this.dandDservice.getCharacterClass('barbarian')
-          // .subscribe(data => this.characterClass = data);
-          .subscribe(data => console.log(data))
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(1)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'bard': {
@@ -93,30 +94,40 @@ export class CharacterSheetComponent implements OnInit {
         console.log('cleric selected');
         this.dandDservice.getCharacterClass('cleric')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(3)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'druid': {
         console.log('druid selected');
         this.dandDservice.getCharacterClass('druid')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(4)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'fighter': {
         console.log('fighter selected');
         this.dandDservice.getCharacterClass('fighter')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(5)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'monk': {
         console.log('monk selected');
         this.dandDservice.getCharacterClass('monk')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(6)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'paladin': {
         console.log('paladin selected');
         this.dandDservice.getCharacterClass('paladin')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(7)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'ranger': {
@@ -129,18 +140,24 @@ export class CharacterSheetComponent implements OnInit {
         console.log('rogue selected');
         this.dandDservice.getCharacterClass('rogue')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(8)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'sorcerer': {
         console.log('sorcerer selected');
         this.dandDservice.getCharacterClass('sorcerer')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(9)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'warlock': {
         console.log('warlock selected');
         this.dandDservice.getCharacterClass('warlock')
           .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(10)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
     }
