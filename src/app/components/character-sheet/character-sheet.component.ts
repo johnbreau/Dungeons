@@ -2,7 +2,7 @@ import { Component, OnInit, AfterContentInit, Output, EventEmitter } from '@angu
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiceService } from '../../services/dice.service';
 import { DDService } from '../../services/dd.service';
-import { Subscription } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-character-sheet',
@@ -17,6 +17,7 @@ export class CharacterSheetComponent implements OnInit {
   public abilityScoreIndex = 'str';
   public abilityScoreData: {};
   public characterClass: {};
+  public startingEquipment: {};
   public selectedCharacterClass: string;
 
   constructor(private formBuilder: FormBuilder,
@@ -24,8 +25,6 @@ export class CharacterSheetComponent implements OnInit {
               private diceService: DiceService) { }
 
   ngOnInit() {
-    this.dandDservice.getCharacterClass();
-
     this.bodyText = 'This text can be updated in modal 1';
     this.characterSheetForm = this.formBuilder.group({
       characterName: [
@@ -77,46 +76,71 @@ export class CharacterSheetComponent implements OnInit {
     switch (this.selectedCharacterClass) {
       case 'barbarian': {
         console.log('barbarian selected');
+        this.dandDservice.getCharacterClass('barbarian')
+          // .subscribe(data => this.characterClass = data);
+          .subscribe(data => console.log(data))
         break;
       }
       case 'bard': {
         console.log('bard selected');
+        this.dandDservice.getCharacterClass('bard')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(2)
+          .subscribe(data => this.startingEquipment = data);
         break;
       }
       case 'cleric': {
         console.log('cleric selected');
+        this.dandDservice.getCharacterClass('cleric')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'druid': {
         console.log('druid selected');
+        this.dandDservice.getCharacterClass('druid')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'fighter': {
         console.log('fighter selected');
+        this.dandDservice.getCharacterClass('fighter')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'monk': {
         console.log('monk selected');
+        this.dandDservice.getCharacterClass('monk')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'paladin': {
         console.log('paladin selected');
+        this.dandDservice.getCharacterClass('paladin')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'ranger': {
         console.log('ranger selected');
+        this.dandDservice.getCharacterClass('ranger')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'rogue': {
         console.log('rogue selected');
+        this.dandDservice.getCharacterClass('rogue')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'sorcerer': {
         console.log('sorcerer selected');
+        this.dandDservice.getCharacterClass('sorcerer')
+          .subscribe(data => this.characterClass = data);
         break;
       }
       case 'warlock': {
         console.log('warlock selected');
+        this.dandDservice.getCharacterClass('warlock')
+          .subscribe(data => this.characterClass = data);
         break;
       }
     }

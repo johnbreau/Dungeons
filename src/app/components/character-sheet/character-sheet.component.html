@@ -31,7 +31,15 @@
               <mat-option value="warlock">Warlock</mat-option>
           </mat-select>
       </mat-form-field>
-      <mat-card>{{characterClass}}</mat-card>
+    </div>
+
+    <div *ngIf="startingEquipment" class="character-sheet__form-row">
+      <div class="character-sheet__form-section">
+        <mat-card>
+          <h4>Equipment List</h4>
+          <div *ngFor="let equipment of startingEquipment.starting_equipment">{{equipment.item.name}}</div>
+        </mat-card>
+      </div>
     </div>
 
     <div class="character-sheet__form-row">
