@@ -69,7 +69,7 @@ export class MapBuilderComponent implements OnInit {
       disablePushOnResize: false,
       pushDirections: {north: true, east: true, south: true, west: true},
       pushResizeItems: false,
-      displayGrid: DisplayGrid.Always,
+      // displayGrid: DisplayGrid.Always,
       disableWindowResize: false,
       disableWarnings: false,
       scrollToNewItems: false
