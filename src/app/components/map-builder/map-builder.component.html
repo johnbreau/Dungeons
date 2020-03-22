@@ -1,6 +1,6 @@
 <div class="map-builder__container">
 <gridster [options]="options" class="map-builder__gridster-background">
-  <gridster-item [item]="item" *ngFor="let item of dashboard" style="width:200px;height:200px;">
+  <gridster-item [item]="item" *ngFor="let item of dashboard">
     <img src="/../../../assets/images/map/{{ item.url }}"/>
     <!-- <div class="button-ho"lder">
       <div class="gridster-item-content" *ngIf="item.hasContent">
