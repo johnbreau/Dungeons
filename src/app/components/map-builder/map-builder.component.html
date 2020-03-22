@@ -1,7 +1,8 @@
 <div class="map-builder__container">
-<gridster [options]="options">
-  <gridster-item [item]="item" *ngFor="let item of dashboard">
-    <div class="button-holder">
+<gridster [options]="options" class="map-builder__gridster-background">
+  <gridster-item [item]="item" *ngFor="let item of dashboard" style="width:200px;height:200px;">
+    <img src="/../../../assets/images/map/{{ item.url }}"/>
+    <!-- <div class="button-ho"lder">
       <div class="gridster-item-content" *ngIf="item.hasContent">
         <div class="stuff">
           <span>Some content to select and click without dragging the widget</span>
@@ -22,7 +23,7 @@
               (touchstart)="removeItem($event, item)">
         <mat-icon>delete</mat-icon>
       </button>
-    </div>
+    </div> -->
   </gridster-item>
 </gridster>
 </div>
