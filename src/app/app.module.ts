@@ -1,23 +1,26 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './router/app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { ObserversModule } from '@angular/cdk/observers';
 
 import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './components/home/home.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { MapBuilderComponent } from './components/map-builder/map-builder.component';
+import { PokemonComponent } from './components/pokemon/pokemon.component';
 
 import { DiceService } from './services/dice.service';
 import { DDService } from './services/dd.service';
 import { PokeService } from './services/pokeService.service';
 import { AbilityScoreAdjustmentService } from './services/abilityScoreAdjustment.service';
-import { PokemonComponent } from './components/pokemon/pokemon.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
-import { ObserversModule } from '@angular/cdk/observers';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
@@ -119,6 +122,7 @@ const modules: any[] = [
     HeaderComponent,
     CampaignComponent,
     HomeComponent,
+    MapBuilderComponent,
   ],
   imports: [
     BrowserModule,
