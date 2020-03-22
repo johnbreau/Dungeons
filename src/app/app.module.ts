@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { GridsterModule } from 'angular-gridster2';
 
 import { DiceService } from './services/dice.service';
 import { DDService } from './services/dd.service';
@@ -57,6 +58,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { MapBuilderComponent } from './components/map-builder/map-builder.component';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -119,6 +121,7 @@ const modules: any[] = [
     HeaderComponent,
     CampaignComponent,
     HomeComponent,
+    MapBuilderComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,6 +130,7 @@ const modules: any[] = [
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    GridsterModule,
     ...modules,
   ],
     exports: [
