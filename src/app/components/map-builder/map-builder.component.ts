@@ -16,7 +16,7 @@ interface Box {
 export class MapBuilderComponent {
     public boxes: Array<Box> = [];
     public gridConfig: NgGridConfig = <NgGridConfig>{
-        'margins': [5],
+        'margins': [3],
         'draggable': true,
         'resizable': false,
         'max_cols': 3,

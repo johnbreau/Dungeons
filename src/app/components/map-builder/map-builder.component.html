@@ -1,17 +1,18 @@
 <div class="app-container">
+  <div class="map-builder__key-container">
     <a (click)="addRedBox()" class="btn btn-primary pull-right navbar-btn">Add Box</a>
     <a (click)="addBlueBox()" class="btn btn-primary pull-right navbar-btn">Add Box</a>
     <a (click)="addGreenBox()" class="btn btn-primary pull-right navbar-btn">Add Box</a>
-
-<div [ngGrid]="gridConfig" class="map-builder__container">
-	
-	<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="onDrag(i, $event)">
-		<div class="handle">{{box.name}} Box<div class="box-header-btns pull-right">
-						<a title="Remove widget" (click)="removeWidget(i);">
-							<div class="glyphicon glyphicon-trash"></div>
-						</a>
-					</div></div>
   </div>
-  
-</div>
+  <div [ngGrid]="gridConfig" class="map-builder__map-container">
+		<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="onDrag(i, $event)">
+      <div class="handle">{{box.name}} Box
+        <div class="box-header-btns pull-right">
+              <a title="Remove widget" (click)="removeWidget(i);">
+                <div class="glyphicon glyphicon-trash"></div>
+              </a>
+        </div>
+      </div>
+    </div> 
+  </div>
 </div>
