@@ -53,7 +53,6 @@ export class MapBuilderComponent {
     }
 
     addRedBox(): void {
-      console.log('color red')
         const type = 'red';
         const conf: NgGridItemConfig = this._generateDefaultItemConfig(type);
         conf.payload = this.curNum++;
@@ -61,7 +60,6 @@ export class MapBuilderComponent {
     }
 
     addBlueBox(): void {
-      console.log('color blue')
         const type = 'blue';
         const conf: NgGridItemConfig = this._generateDefaultItemConfig(type);
         conf.payload = this.curNum++;
@@ -69,7 +67,6 @@ export class MapBuilderComponent {
     }
 
     addGreenBox(): void {
-      console.log('color green')
         const type = 'green';
         const conf: NgGridItemConfig = this._generateDefaultItemConfig(type);
         conf.payload = this.curNum++;
