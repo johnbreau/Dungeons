@@ -24,12 +24,14 @@ import { CharacterSheetComponent } from '../components/character-sheet/character
 import { CampaignComponent } from '../components/campaign/campaign.component';
 import { AppComponent } from '../app.component';
 import { HomeComponent } from '../components/home/home.component';
+import { MapBuilderComponent } from '../components/map-builder/map-builder.component';
 
 
 const routes: Routes = [
   {path: 'home' , component: HomeComponent},
   {path: 'character' , component: CharacterSheetComponent},
   {path: 'campaign' , component: CampaignComponent},
+  {path: 'map' , component: MapBuilderComponent},
 ];
 
 @NgModule({

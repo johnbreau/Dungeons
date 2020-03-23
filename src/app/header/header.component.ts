@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  links = ['home', 'character', 'campaign'];
+  links = ['home', 'character', 'campaign', 'map'];
   activeLink = this.links[0];
   background = '';
 

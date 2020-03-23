@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './router/app-routing.module';
+import { NgGridModule } from 'angular2-grid';
 
 import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
@@ -57,6 +58,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { MapBuilderComponent } from './components/map-builder/map-builder.component';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
@@ -119,6 +121,7 @@ const modules: any[] = [
     HeaderComponent,
     CampaignComponent,
     HomeComponent,
+    MapBuilderComponent,
   ],
   imports: [
     BrowserModule,
@@ -127,6 +130,7 @@ const modules: any[] = [
     HttpClientModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    NgGridModule,
     ...modules,
   ],
     exports: [
