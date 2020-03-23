@@ -4,30 +4,33 @@
   }
 
   &__gridster-background {
+    width: 900px;
+    border: 2px solid black;
     background-color: #fff;
-    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-size: 148px 148px, 148px 148px, 30px 30px, 30px 30px;
     background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-    background-image: -webkit-linear-gradient(black 2px, transparent 2px),
-                      -webkit-linear-gradient(0, black 2px, transparent 2px),
-                      -webkit-linear-gradient(rgba(0,0,0,.3) 1px, transparent 1px),
-                      -webkit-linear-gradient(0, rgba(0,0,0,.3) 1px, transparent 1px);
-    background-image: -moz-linear-gradient(black 2px, transparent 2px),
-                      -moz-linear-gradient(0, black 2px, transparent 2px),
-                      -moz-linear-gradient(rgba(0,0,0,.3) 1px, transparent 1px),
-                      -moz-linear-gradient(0, rgba(0,0,0,.3)  1px, transparent 1px);
+    // background-image: -webkit-linear-gradient(black 2px, transparent 2px),
+    //                   -webkit-linear-gradient(0, black 2px, transparent 2px),
+    //                   -webkit-linear-gradient(rgba(0,0,0,.3) 1px, transparent 1px),
+    //                   -webkit-linear-gradient(0, rgba(0,0,0,.3) 1px, transparent 1px);
+    // background-image: -moz-linear-gradient(black 2px, transparent 2px),
+    //                   -moz-linear-gradient(0, black 2px, transparent 2px),
+    //                   -moz-linear-gradient(rgba(0,0,0,.3) 1px, transparent 1px),
+    //                   -moz-linear-gradient(0, rgba(0,0,0,.3)  1px, transparent 1px);
     background-image: linear-gradient(black 2px, transparent 2px),
                       linear-gradient(90deg, black 2px, transparent 2px),
                       linear-gradient(rgba(0,0,0,.3)  1px, transparent 1px),
                       linear-gradient(90deg, rgba(0,0,0,.3)  1px, transparent 1px);
-    -pie-background: linear-gradient(black 2px, transparent 2px) -2px -2px / 100px,
-                    linear-gradient(90deg, black 2px, transparent 2px) -2px -2px / 100px,
-                    linear-gradient(rgba(0,0,0,.3)  1px, transparent 1px) -1px -1px / 20px,
-                    linear-gradient(90deg, rgba(0,0,0,.3) 1px, transparent 1px) -1px -1px / 20px,
-                    #269;
+    // -pie-background: linear-gradient(black 2px, transparent 2px) -2px -2px / 100px,
+    //                 linear-gradient(90deg, black 2px, transparent 2px) -2px -2px / 100px,
+    //                 linear-gradient(rgba(0,0,0,.3)  1px, transparent 1px) -1px -1px / 20px,
+    //                 linear-gradient(90deg, rgba(0,0,0,.3) 1px, transparent 1px) -1px -1px / 20px,
+    //                 #269;
     behavior: url(/pie/PIE.htc);
   }
 }
 
-gridster /deep/ .gridster-preview{
-  background: red;
+gridster /deep/ .gridster-item {
+  width: 100px;
+  height: 100px;
 }
