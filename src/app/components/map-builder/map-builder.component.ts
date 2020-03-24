@@ -52,7 +52,8 @@ export class MapBuilderComponent {
         // this.curNum = dashconf.length + 1;
     }
 
-    addRedBox(): void {
+    addTile(tile): void {
+        console.log('tiletype', tile)
         const type = 'red';
         const conf: NgGridItemConfig = this._generateDefaultItemConfig(type);
         conf.payload = this.curNum++;

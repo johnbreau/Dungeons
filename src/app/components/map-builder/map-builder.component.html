@@ -1,8 +1,13 @@
 <div class="app-container">
   <div class="map-builder__key-container">
-    <a (click)="addRedBox()" class="btn btn-primary pull-right navbar-btn">Add Box</a>
-    <a (click)="addBlueBox()" class="btn btn-primary pull-right navbar-btn">Add Box</a>
-    <a (click)="addGreenBox()" class="btn btn-primary pull-right navbar-btn">Add Box</a>
+    <a (click)="addTile('hall')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/hall.svg'"></a>
+    <a (click)="addTile('corner')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/corner.svg'"></a>
+    <a (click)="addTile('door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/door.svg'"></a>
+    <a (click)="addTile('ledge')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/elevated_ledge.svg'"></a>
+    <a (click)="addTile('false-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/false_door.svg'"></a>
+    <a (click)="addTile('natural-chimney')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/natural_chimney.svg'"></a>
+    <a (click)="addTile('one-way-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/one-way-door.svg'"></a>
+    <a (click)="addTile('secret-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/secret_door.svg'"></a>
   </div>
   <div [ngGrid]="gridConfig" class="map-builder__map-container">
 		<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="onDrag(i, $event)">

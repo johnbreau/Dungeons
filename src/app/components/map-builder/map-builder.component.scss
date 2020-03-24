@@ -1,6 +1,8 @@
 .map-builder {
 
 	&__key-container {
+		display: flex;
+		justify-content: start;
 		width: 100%;
 		margin-bottom: 40px;
 	}
@@ -19,6 +21,14 @@
 											linear-gradient(rgba(0,0,0,.3)  1px, transparent 1px),
 											linear-gradient(90deg, rgba(0,0,0,.3)  1px, transparent 1px);
 		behavior: url(/pie/PIE.htc);
+	}
+
+	&__tile svg {
+		border: 1px solid black;
+		cursor: pointer;
+		height: 50px;
+		margin: 4px;
+		width: 50px;
 	}
 }
 

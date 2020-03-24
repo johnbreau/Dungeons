@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CampaignComponent } from './components/campaign/campaign.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { InlineSVGModule } from 'ng-inline-svg';
 
 import { DiceService } from './services/dice.service';
 import { DDService } from './services/dd.service';
@@ -120,6 +121,7 @@ const modules: any[] = [
     MapBuilderComponent,
   ],
   imports: [
+    InlineSVGModule.forRoot(),
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
@@ -127,6 +129,7 @@ const modules: any[] = [
     BrowserAnimationsModule,
     AppRoutingModule,
     NgGridModule,
+    InlineSVGModule,
     ...modules,
   ],
     exports: [
