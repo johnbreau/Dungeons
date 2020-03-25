@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, ElementRef, ViewChild, AfterViewChecked, Renderer2, AfterViewInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
 import { nodeListToArray } from '../../utilitiy-functions/nodeListToArray.js';
 
@@ -19,41 +19,17 @@ interface Tile {
   styleUrls: ['./map-builder.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MapBuilderComponent implements OnInit, AfterViewInit {
-    @ViewChild('double-test') doubleTest: ElementRef;
-    
+export class MapBuilderComponent implements OnInit {
     public boxes: Array<Box> = [];
-    public gridConfig: NgGridConfig = <NgGridConfig>{
-        'margins': [3],
-        'draggable': true,
-        'resizable': false,
-        'max_cols': 3,
-        'max_rows': 0,
-        'visible_cols': 0,
-        'visible_rows': 0,
-        'min_cols': 1,
-        'min_rows': 1,
-        'col_width': 2,
-        'row_height': 2,
-        'cascade': 'none',
-        'min_width': 25,
-        'min_height': 25,
-        'fix_to_grid': true,
-        'auto_style': true,
-        'auto_resize': false,
-        'maintain_ratio': false,
-        'prefer_new': false,
-        'zoom_on_drag': false,
-        'limit_to_screen': true
-    };
+    public gridConfig: NgGridConfig = {};
     private rgb = '#efefef';
     private curNum;
     private itemPositions: Array<any> = [];
     public tileSet: Array<Tile> = [];
-    public isSingleClick: Boolean = true; 
+    public isSingleClick = true;
     public rotateAngle = 0;
 
-    constructor(private renderer: Renderer2, private elem: ElementRef) {
+    constructor() {
         // const dashconf = this._generateDefaultDashConfig();
         // for (let i = 0; i < dashconf.length; i++) {
         //     const conf = dashconf[i];
@@ -77,36 +53,38 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
         {name: 'one-way-door', url: '../../../assets/svg/one-way-door.svg'},
         {name: 'secret-door', url: '../../../assets/svg/secret-door.svg'},
       ]
+      this.gridConfig = {
+        margins: [3],
+        draggable: true,
+        resizable: false,
+        max_cols: 3,
+        max_rows: 0,
+        visible_cols: 0,
+        visible_rows: 0,
+        min_cols: 1,
+        min_rows: 1,
+        col_width: 2,
+        row_height: 2,
+        cascade: 'none',
+        min_width: 25,
+        min_height: 25,
+        fix_to_grid: true,
+        auto_style: true,
+        auto_resize: false,
+        maintain_ratio: false,
+        prefer_new: false,
+        zoom_on_drag: false,
+        limit_to_screen: true
+    };
     }
 
-    // ngAfterViewInit() {
-    //   console.log('double tetst', this.doubleTest);
-      // const mySet = this.nodeListToArray=(this.elem.nativeElement.querySelectorAll('.map-builder__tile'));
-      // console.log('mySet', mySet);
-      // const button = this.elem.nativeElement.query
-      // console.log('button', button);
-      // this.renderer.setStyle(button, 'new-style-here',this.doubleTest);
-      // let inputFromMap = this.doubleTest.nativeElement.value;
-      // inputFromMap.addEventListener('dblclick', function (e) {
-      //   window.alert('double click');
-      // });
-    // }
-
-  //   ngAfterViewInit() {
-  //     this.renderer.listen(this.doubleTest.nativeElement, 'click', () => {
-  //       console.log('dt', this.doubleTest.nativeElement)
-  //       this.renderer.setStyle(this.doubleTest.nativeElement, 'color', 'green');
-  //     // this.elem.nativeElement.querySelector('dmap-builder__tile')
-  //     //     .addEventListener('click', this.onClick.bind(this));
-  //   });
-  // }
-
    rotateTile($event){
-      let documentElement = $event.target;
-      let elementRoot = window.getComputedStyle(documentElement);
+      const documentElement = $event.target;
+      const elementRoot = window.getComputedStyle(documentElement);
+      // tslint:disable-next-line:radix
       let rotateDeg = parseInt(elementRoot.getPropertyValue('--turn'))
       rotateDeg = (rotateDeg+90) % 360
-      documentElement.style.setProperty('--turn', rotateDeg + "deg")
+      documentElement.style.setProperty('--turn', rotateDeg + 'deg')
     }
 
     nodeListToArray(nodeList) {
@@ -146,39 +124,39 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
         // Do something here
     }
 
-    private _generateDefaultItemConfig(tile): NgGridItemConfig {
+    private _generateDefaultItemConfig(tile){
       if ( tile === 'hall') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle', col: 1, row: 1, sizex: 1, sizey: 1 };
       }
       if ( tile === 'corner') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 2, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
       }
       if ( tile === 'corner-right') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 2, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
       }
       if ( tile === 'corner-bottom') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 2, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
       }
       if ( tile === 'corner-left') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 2, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
       }
       if ( tile === 'door') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 3, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
       }
       if ( tile === 'elevated-ledge') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 3, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle', col: 1, row: 3, sizex: 1, sizey: 1 };
       }
       if ( tile === 'false-door') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 3, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
       }
       if ( tile === 'natural-chimney') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 3, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
       }
       if ( tile === 'one-way-door') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 3, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
       }
       if ( tile === 'secret-door') {
-        return { 'dragHandle': '.handle', 'col': 1, 'row': 3, 'sizex': 1, 'sizey': 1 };
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
       }
     }
 
