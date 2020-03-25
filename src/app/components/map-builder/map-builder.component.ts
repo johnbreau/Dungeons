@@ -50,6 +50,8 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
     private curNum;
     private itemPositions: Array<any> = [];
     public tileSet: Array<Tile> = [];
+    public isSingleClick: Boolean = true; 
+    public rotateAngle = 0;
 
     constructor(private renderer: Renderer2, private elem: ElementRef) {
         // const dashconf = this._generateDefaultDashConfig();
@@ -99,8 +101,12 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
   //   });
   // }
 
-    onDoubleClick(){
-      console.log('clicked');
+   rotateTile($event){
+      let documentElement = $event.target;
+      let elementRoot = window.getComputedStyle(documentElement);
+      let rotateDeg = parseInt(elementRoot.getPropertyValue('--turn'))
+      rotateDeg = (rotateDeg+90) % 360
+      documentElement.style.setProperty('--turn', rotateDeg + "deg")
     }
 
     nodeListToArray(nodeList) {
@@ -108,13 +114,18 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
     }
 
     addTile(tile): void {
-        this.tileSet.forEach((data) => {
-          if (data.name === tile) {
-            const type = tile
-            const conf: NgGridItemConfig = this._generateDefaultItemConfig(type);
-            this.boxes.push({config: conf, name: data.name, url: data.url});
-          }
-      })
+      this.isSingleClick = true;
+        setTimeout(()=>{
+            if(this.isSingleClick){
+            this.tileSet.forEach((data) => {
+              if (data.name === tile) {
+                const type = tile
+                const conf: NgGridItemConfig = this._generateDefaultItemConfig(type);
+                this.boxes.push({config: conf, name: data.name, url: data.url});
+              }
+          })
+        }
+      },250)
     }
 
     removeWidget(index: number): void {
