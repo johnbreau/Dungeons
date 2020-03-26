@@ -12,6 +12,7 @@
 	}
 
 	&__map-container {
+		margin-bottom: 15px;
 		position: relative;
 		width: 100%;
 		max-width: 837px;
@@ -44,6 +45,10 @@
 
 	&__turn-right {
 		transform: rotate(90deg);
+	}
+
+	&__submit-button {
+		margin-top: 15px;
 	}
 }
 

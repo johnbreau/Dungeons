@@ -1,11 +1,11 @@
-<div class="app-container">
+<div #mapBuilder class="app-container">
   <div class="map-builder__key-container">
     <a #doubleTest (click)="addTile('hall')" class="map-builder__tile"  [inlineSVG]="'../../../assets/svg/hall.svg'"></a>
     <a (click)="addTile('corner')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/corner.svg'"></a>
-    <a (click)="addTile('corner-right')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/corner-right.svg'"></a>
-    <a (click)="addTile('corner-bottom')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/corner-bottom.svg'"></a>
-    <a (click)="addTile('corner-left')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/corner-left.svg'"></a>
     <a (click)="addTile('door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/door.svg'"></a>
+    <a (click)="addTile('double-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/double-door.svg'"></a>
+    <a (click)="addTile('stairs-up')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/stairs-up.svg'"></a>
+    <a (click)="addTile('trap-door-floor')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/trap-door-floor.svg'"></a>
     <a (click)="addTile('elevated-ledge')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/elevated-ledge.svg'"></a>
     <a (click)="addTile('false-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/false-door.svg'"></a>
     <a (click)="addTile('natural-chimney')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/natural-chimney.svg'"></a>
@@ -13,7 +13,7 @@
     <a (click)="addTile('secret-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/secret-door.svg'"></a>
   </div>
   <div [ngGrid]="gridConfig" class="map-builder__map-container">
-		<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="onDrag(i, $event)" (dblclick)="rotateTile($event)">
+		<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="dragTile(i, $event)" (dblclick)="rotateTile($event)">
       <div class="handle">
         <div class="box-header-btns pull-right">
               <a title="Remove widget" (click)="removeWidget(i);">
@@ -24,4 +24,5 @@
       </div>
     </div> 
   </div>
+  <button mat-stroked-button class="map-builder__submit-button" type="submit" (click)="saveDOMState()">Save Map</button>
 </div>

@@ -1,6 +1,6 @@
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { NgGridConfig, NgGridItemConfig, NgGridItemEvent } from 'angular2-grid';
-import { nodeListToArray } from '../../utilitiy-functions/nodeListToArray.js';
+import {parse, stringify} from 'flatted/esm';
 
 interface Box {
     config: any;
@@ -19,7 +19,9 @@ interface Tile {
   styleUrls: ['./map-builder.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class MapBuilderComponent implements OnInit {
+export class MapBuilderComponent implements OnInit, AfterViewInit {
+  @ViewChild('mapBuilder') firstChild: ElementRef;
+
     public boxes: Array<Box> = [];
     public gridConfig: NgGridConfig = {};
     private rgb = '#efefef';
@@ -43,10 +45,10 @@ export class MapBuilderComponent implements OnInit {
       this.tileSet = [
         {name: 'hall', url: '../../../assets/svg/hall.svg'},
         {name: 'corner', url: '../../../assets/svg/corner.svg'},
-        {name: 'corner-right', url: '../../../assets/svg/corner-right.svg'},
-        {name: 'corner-bottom', url: '../../../assets/svg/corner-bottom.svg'},
-        {name: 'corner-left', url: '../../../assets/svg/corner-left.svg'},
         {name: 'door', url: '../../../assets/svg/door.svg'},
+        {name: 'double-door', url: '../../../assets/svg/double-door.svg'},
+        {name: 'stairs-up', url: '../../../assets/svg/stairs-up.svg'},
+        {name: 'trap-door-floor', url: '../../../assets/svg/trap-door-floor.svg'},
         {name: 'elevated-ledge', url: '../../../assets/svg/elevated-ledge.svg'},
         {name: 'false-door', url: '../../../assets/svg/false-door.svg'},
         {name: 'natural-chimney', url: '../../../assets/svg/natural-chimney.svg'},
@@ -54,7 +56,7 @@ export class MapBuilderComponent implements OnInit {
         {name: 'secret-door', url: '../../../assets/svg/secret-door.svg'},
       ]
       this.gridConfig = {
-        margins: [3],
+        margins: [2],
         draggable: true,
         resizable: false,
         max_cols: 3,
@@ -78,6 +80,10 @@ export class MapBuilderComponent implements OnInit {
     };
     }
 
+    ngAfterViewInit() {
+      console.log('after view init');
+    }
+
    rotateTile($event){
       const documentElement = $event.target;
       const elementRoot = window.getComputedStyle(documentElement);
@@ -85,10 +91,6 @@ export class MapBuilderComponent implements OnInit {
       let rotateDeg = parseInt(elementRoot.getPropertyValue('--turn'))
       rotateDeg = (rotateDeg+90) % 360
       documentElement.style.setProperty('--turn', rotateDeg + 'deg')
-    }
-
-    nodeListToArray(nodeList) {
-      return Array.prototype.slice.call(nodeList);
     }
 
     addTile(tile): void {
@@ -106,6 +108,10 @@ export class MapBuilderComponent implements OnInit {
       },250)
     }
 
+    dragTile(tile, event) : void {
+      // console.log('index', event);
+    }
+
     removeWidget(index: number): void {
         if (this.boxes[index]) {
             this.boxes.splice(index, 1);
@@ -117,7 +123,7 @@ export class MapBuilderComponent implements OnInit {
     }
 
     onDrag(index: number, event: NgGridItemEvent): void {
-        // Do something here
+      //  console.log('draggin', event, index);
     }
 
     onResize(index: number, event: NgGridItemEvent): void {
@@ -131,16 +137,16 @@ export class MapBuilderComponent implements OnInit {
       if ( tile === 'corner') {
         return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
       }
-      if ( tile === 'corner-right') {
-        return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
-      }
-      if ( tile === 'corner-bottom') {
-        return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
-      }
-      if ( tile === 'corner-left') {
-        return { dragHandle: '.handle',  col: 1, row: 2, sizex: 1, sizey: 1 };
-      }
       if ( tile === 'door') {
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
+      }
+      if ( tile === 'double-door') {
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
+      }
+      if ( tile === 'stairs-up') {
+        return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
+      }
+      if ( tile === 'trap-door-floor') {
         return { dragHandle: '.handle',  col: 1, row: 3, sizex: 1, sizey: 1 };
       }
       if ( tile === 'elevated-ledge') {
@@ -160,34 +166,16 @@ export class MapBuilderComponent implements OnInit {
       }
     }
 
-    // private _generateDefaultItemConfig(tile): NgGridItemConfig {
-    //   switch(tile){   
-    //     case 1: 
-    //     tile = 'hall';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-    //     case 2: 
-    //     tile = 'corner';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-    //     case 3: 
-    //     tile = 'door';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-    //     case 4: 
-    //     tile = 'elevated-ledge';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-    //     case 5: 
-    //     tile = 'false-door';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-    //     case 6: 
-    //     tile = 'natural-chimney';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-    //     case 7: 
-    //     tile = 'one-way-door';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };
-    //     case 7: 
-    //     tile = 'secret-door';
-    //     return { 'dragHandle': '.handle', 'col': 1, 'row': 1, 'sizex': 1, 'sizey': 1 };     
-    //   }
-    // }
+    saveDOMState() {
+      console.log(this.firstChild.nativeElement);
+        if (!sessionStorage)
+            return;
+        const data = {
+            name: 'mappy',
+            html: this.firstChild.nativeElement
+        };
+        localStorage.setItem('dungeon-map',stringify(data));
+    };
 
   //   private _generateDefaultDashConfig(): NgGridItemConfig[] {
   //     return [
