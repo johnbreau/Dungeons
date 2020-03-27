@@ -1,4 +1,4 @@
-<div #mapBuilder class="app-container">
+<div class="app-container">
   <div class="map-builder__key-container">
     <a #doubleTest (click)="addTile('hall')" class="map-builder__tile"  [inlineSVG]="'../../../assets/svg/hall.svg'"></a>
     <a (click)="addTile('corner')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/corner.svg'"></a>
@@ -12,17 +12,20 @@
     <a (click)="addTile('one-way-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/one-way-door.svg'"></a>
     <a (click)="addTile('secret-door')" class="map-builder__tile" [inlineSVG]="'../../../assets/svg/secret-door.svg'"></a>
   </div>
-  <div [ngGrid]="gridConfig" class="map-builder__map-container">
-		<div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="dragTile(i, $event)" (dblclick)="rotateTile($event)">
-      <div class="handle">
-        <div class="box-header-btns pull-right">
-              <a title="Remove widget" (click)="removeWidget(i);">
-                <div class="glyphicon glyphicon-trash"></div>
-              </a>
+  <div #newMap>
+    <div [ngGrid]="gridConfig" class="map-builder__map-container">
+      <div *ngFor="let box of boxes; let i = index" [(ngGridItem)]="box.config" (onItemChange)="updateItem(i, $event)" (onResize)="onResize(i, $event)" (onDrag)="dragTile(i, $event)" (dblclick)="rotateTile($event)">
+        <div class="handle">
+          <div class="box-header-btns pull-right">
+                <a title="Remove widget" (click)="removeWidget(i);">
+                  <div class="glyphicon glyphicon-trash"></div>
+                </a>
+          </div>
+          <img src="{{box.url}}" class="map-builder__tile-image"/>
         </div>
-        <img src="{{box.url}}" class="map-builder__tile-image"/>
-      </div>
-    </div> 
+      </div> 
+    </div>
   </div>
+  <div #savedMap>Saved Map Here</div>
   <button mat-stroked-button class="map-builder__submit-button" type="submit" (click)="saveDOMState()">Save Map</button>
 </div>

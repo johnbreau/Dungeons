@@ -20,7 +20,8 @@ interface Tile {
   encapsulation: ViewEncapsulation.None
 })
 export class MapBuilderComponent implements OnInit, AfterViewInit {
-  @ViewChild('mapBuilder') firstChild: ElementRef;
+  @ViewChild('newMap') newMap: ElementRef;
+  @ViewChild('savedMap') savedMap: ElementRef;
 
     public boxes: Array<Box> = [];
     public gridConfig: NgGridConfig = {};
@@ -30,6 +31,7 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
     public tileSet: Array<Tile> = [];
     public isSingleClick = true;
     public rotateAngle = 0;
+    public savedMapExists: boolean;
 
     constructor() {
         // const dashconf = this._generateDefaultDashConfig();
@@ -81,7 +83,16 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-      console.log('after view init');
+      this.checkForSavedMap();
+    }
+
+    checkForSavedMap() {
+      if (localStorage.getItem.length >= 1) {
+        this.savedMapExists = true;
+        this.savedMap.nativeElement.innerHTML = localStorage.getItem('dungeon-map');
+      } else {
+        this.savedMapExists = false;
+      }
     }
 
    rotateTile($event){
@@ -167,14 +178,7 @@ export class MapBuilderComponent implements OnInit, AfterViewInit {
     }
 
     saveDOMState() {
-      console.log(this.firstChild.nativeElement);
-        if (!sessionStorage)
-            return;
-        const data = {
-            name: 'mappy',
-            html: this.firstChild.nativeElement
-        };
-        localStorage.setItem('dungeon-map',stringify(data));
+        localStorage.setItem('dungeon-map', this.newMap.nativeElement.innerHTML);
     };
 
   //   private _generateDefaultDashConfig(): NgGridItemConfig[] {
