@@ -27,14 +27,11 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
-import { MatNativeDateModule, MatCardModule } from '@angular/material';
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 const modules: any[] = [
 
   LayoutModule,
-  MatCardModule,
   MatAutocompleteModule,
   MatCheckboxModule,
   MatDatepickerModule,
@@ -44,8 +41,6 @@ const modules: any[] = [
   MatSelectModule,
   MatSliderModule,
   MatSlideToggleModule,
-
-  MatNativeDateModule,
   // MatMomentDateModule,
 
 ];

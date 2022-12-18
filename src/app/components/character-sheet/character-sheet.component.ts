@@ -139,4 +139,8 @@ export class CharacterSheetComponent implements OnInit {
   testDice() {
     console.log('eight', this.diceService.eightSidedDieFunc());
   }
+
+  addCharacterToDB() {
+    console.log('add character');
+  }
 }

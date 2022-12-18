@@ -1,5 +1,5 @@
 <div class="character-sheet">
-  <mat-card-title>Character Sheet</mat-card-title>
+  <div>Character Sheet</div>
   <form [formGroup]="characterSheetForm" class="character-sheet__form-container">
 
     <div class="character-sheet__form-section">
@@ -11,7 +11,7 @@
                 formControlName="characterName"
                 id="characterName" required>
       </mat-form-field>
-      <mat-card>{{characterClass}}</mat-card>
+      <div>{{characterClass}}</div>
     </div>
 
     <div class="character-sheet__form-section">
@@ -27,7 +27,7 @@
               <mat-option value="Thief">Thief</mat-option>
           </mat-select>
       </mat-form-field>
-      <mat-card>{{characterClass}}</mat-card>
+      <div>{{characterClass}}</div>
     </div>
 
     <div class="character-sheet__form-section">
@@ -39,7 +39,7 @@
               formControlName="characterSrength"
               id="characterSrength">
         </mat-form-field>
-        <mat-card>{{abilityScoreData?.desc}}</mat-card>
+        <!-- <div>{{abilityScoreData?.desc}}</div> -->
     </div>
 
     <div class="character-sheet__form-section">
@@ -222,7 +222,7 @@
       </div>
       
         <div class="row px-3">
-          <button type="submit" class="btn btn-success btn-block" (click)="addSet()">Add Set To Collection</button>
+          <button type="submit" class="btn btn-success btn-block" (click)="addCharacterToDB()">Add Set To Collection</button>
         </div>
   </form>
 </div>
