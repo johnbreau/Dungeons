@@ -1,13 +1,24 @@
 .header {
     min-width: 100%;
     min-height: 75px;
-  
-    &__logo {
-      height: 75px;
+
+    .nav-header {
+        display: flex;
+        flex-shrink: 0;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .header-button {
+        color: black;
+        font-size: 40px;
+        padding: 0 25px 10px 25px;
+        text-transform: capitalize;
     }
   
-    &__button {
-      text-transform: capitalize;
+    &__logo {
+      height: 15px;
     }
   
   }

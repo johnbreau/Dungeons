@@ -17,6 +17,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ObserversModule } from '@angular/cdk/observers';
 
+
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field'
 import { ModuleWithProviders } from "@angular/core";
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -134,7 +136,12 @@ const modules: any[] = [
       HeaderComponent,
       ...modules
     ],
-  providers: [DiceService, AbilityScoreAdjustmentService, DDService],
+  providers: [
+    DiceService, 
+    AbilityScoreAdjustmentService, 
+    DDService,
+    { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' }},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
