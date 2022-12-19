@@ -12,9 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { DiceService } from './services/dice.service';
 import { DDService } from './services/dd.service';
-import { PokeService } from './services/pokeService.service';
 import { AbilityScoreAdjustmentService } from './services/abilityScoreAdjustment.service';
-import { PokemonComponent } from './components/pokemon/pokemon.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -117,7 +115,6 @@ const modules: any[] = [
   declarations: [
     AppComponent,
     CharacterSheetComponent,
-    PokemonComponent,
     HeaderComponent,
     CampaignComponent,
     HomeComponent,
@@ -137,7 +134,7 @@ const modules: any[] = [
       HeaderComponent,
       ...modules
     ],
-  providers: [DiceService, AbilityScoreAdjustmentService, PokeService, DDService],
+  providers: [DiceService, AbilityScoreAdjustmentService, DDService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
