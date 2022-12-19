@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiceService } from '../../services/dice.service';
 import { DDService } from '../../services/dd.service';
 import { Observable, of } from 'rxjs';
+import { NgxIndexedDBService } from 'ngx-indexed-db';
 
 @Component({
   selector: 'app-character-sheet',
@@ -22,9 +23,47 @@ export class CharacterSheetComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private dandDservice: DDService,
-              private diceService: DiceService) { }
+              private diceService: DiceService,
+              private dbService: NgxIndexedDBService) { }
 
   ngOnInit() {
+    let today = new Date();
+    console.log(today.getDate());
+    console.log(today.getHours())
+    console.log(today.getMinutes())
+    console.log(today.getTime())
+    const current = today.getTime();
+    today.setHours(25)
+    const token = {
+      jwt: 'dddddd',
+      expireDate: today.getTime()
+    }
+
+    localStorage.setItem('token', JSON.stringify(token))
+
+
+    var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+                var diffDays = Math.abs((today.getTime() - current) / (oneDay));
+
+    localStorage.setItem('token', JSON.stringify(token));
+    this.dbService.add('people', { name: 'Presley', email: 'press86' }).subscribe(
+        () => {
+            // Do something after the value was added
+        },
+        error => {
+            console.log(error);
+        }
+    );
+    // this.dbService.update('people', )
+    this.dbService.getAll('people').subscribe(
+        people => {
+            console.log(people);
+        },
+        error => {
+            console.log(error);
+        }
+    );
+
     this.bodyText = 'This text can be updated in modal 1';
     this.characterSheetForm = this.formBuilder.group({
       characterName: [

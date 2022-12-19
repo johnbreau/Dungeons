@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'
+import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 
 import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
@@ -57,6 +58,52 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MapBuilderComponent } from './components/map-builder/map-builder.component';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
+// Ahead of time compiles requires an exported function for factories
+export function migrationFactory() {
+  // The animal table was added with version 2 but none of the existing tables or data needed
+  // to be modified so a migrator for that version is not included.
+  return {
+    1: (db, transaction) => {
+      const store = transaction.objectStore('people');
+      store.createIndex('country', 'country', { unique: false });
+    },
+    3: (db, transaction) => {
+      const store = transaction.objectStore('people');
+      store.createIndex('age', 'age', { unique: false });
+    }
+  };
+}
+
+const dbConfig: DBConfig  = {
+  name: 'MyDb',
+  version: 3,
+  objectStoresMeta: [{
+    store: 'people',
+    storeConfig: { keyPath: 'id', autoIncrement: true },
+    storeSchema: [
+      { name: 'name', keypath: 'name', options: { unique: false } },
+      { name: 'email', keypath: 'email', options: { unique: false } }
+    ]
+  }, {
+    // animals added in version 2
+    store: 'animals',
+    storeConfig: { keyPath: 'id', autoIncrement: true },
+    storeSchema: [
+      { name: 'name', keypath: 'name', options: { unique: true } },
+    ]
+  },
+  {
+    // animals added in version 2
+    store: 'token',
+    storeConfig: { keyPath: 'id', autoIncrement: true },
+    storeSchema: [
+      { name: 'token', keypath: 'token', options: { unique: true } },
+    ]
+  }],
+  // provide the migration factory to the DBConfig
+  migrationFactory
+};
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -130,6 +177,7 @@ const modules: any[] = [
     BrowserAnimationsModule,
     BrowserModule, 
     RouterModule.forRoot(routes),
+    NgxIndexedDBModule.forRoot(dbConfig),
     ...modules,
   ],
     exports: [
