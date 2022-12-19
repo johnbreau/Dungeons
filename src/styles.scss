@@ -1,20 +1,20 @@
 @import '../node_modules/@angular/material/theming'; @include mat-core();
 
 $my-primary: (
-    50 : #e0f1e0,
-    100 : #b3dcb3,
-    200 : #80c580,
-    300 : #4dad4d,
-    400 : #269c26,
-    500 : #008a00,
-    600 : #008200,
-    700 : #007700,
-    800 : #006d00,
-    900 : #005a00,
-    A100 : #8bff8b,
-    A200 : #58ff58,
-    A400 : #25ff25,
-    A700 : #0cff0c,
+    50: #ede0e0,
+    100: #d1b3b3,
+    200: #b38080,
+    300: #944d4d,
+    400: #7d2626,
+    500: #660000,
+    600: #5e0000,
+    700: #530000,
+    800: #490000,
+    900: #380000,
+    A100: #ff6e6e,
+    A200: #ff3b3b,
+    A400: #ff0808,
+    A700: #7d2626,
     contrast: (
         50 : #000000,
         100 : #000000,
@@ -34,20 +34,20 @@ $my-primary: (
 );
 
 $my-accent: (
-    50 : #f9ece4,
-    100 : #efcebc,
-    200 : #e5ae8f,
-    300 : #da8e62,
-    400 : #d27540,
-    500 : #ca5d1e,
-    600 : #c5551a,
-    700 : #bd4b16,
-    800 : #b74112,
-    900 : #ab300a,
-    A100 : #ffdfd7,
-    A200 : #ffb5a4,
-    A400 : #ff8c71,
-    A700 : #ff7858,
+    50: #fbeaea,
+    100: #f6cbcb,
+    200: #f0a9a9,
+    300: #ea8787,
+    400: #e66d6d,
+    500: #e15353,
+    600: #dd4c4c,
+    700: #d94242,
+    800: #d53939,
+    900: #cd2929,
+    A100: #ffffff,
+    A200: #ffd9d9,
+    A400: #ffa6a6,
+    A700: #ff8c8c,
     contrast: (
         50 : #000000,
         100 : #000000,
@@ -68,7 +68,7 @@ $my-accent: (
 
 $dungeons-primary: mat-palette($my-primary);
 $dungeons-accent: mat-palette($my-accent);
-$my-theme-warn: mat-palette($mat-red);
+$my-theme-warn: mat-palette($my-primary);
 
 $my-theme: mat-light-theme($dungeons-primary, $dungeons-accent, $my-theme-warn);
 
@@ -108,9 +108,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .pirata {
     font-family: "pirata", Arial, Helvetica, sans-serif; 
     letter-spacing: 0px;
-}
-
-.main-container {
-    background-color: bisque;
-    width: 75%;
 }
