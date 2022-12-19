@@ -18,4 +18,10 @@ export class DDService {
     headers = headers.append('Content-Type', 'application/json');
     return this.http.get(this.baseURL + 'classes/' + index);
   }
+
+  getStartingEquipment(index) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    return this.http.get(this.baseURL + 'starting-equipment/' + index);
+  }
 }

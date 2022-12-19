@@ -1,0 +1,27 @@
+<header class="header">
+    <div class="header__logo"></div>
+    <div class="nav-header">
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link *ngFor="let link of links"
+        class="header-button pirata"
+        [routerLink] = link
+        (click)="activeLink = link"
+        [active]="activeLink == link"> {{ link }} </a>
+      <!-- <a mat-tab-link disabled>Disabled Link</a> -->
+    </nav>
+    </div>
+  </header>
+  
+  <!-- 
+  <header class="header">
+    <div class="header__logo"></div>
+    <nav mat-tab-nav-bar>
+      <a mat-tab-link [routerLink] = "'/character-sheet'"
+         (click)="activeLink = link"
+         [active]="activeLink == link">Character-Sheet</a>
+      <a mat-tab-link [routerLink] = "'/campaign'"
+        (click)="activeLink = link"
+        [active]="activeLink == link">Campaign</a>
+      <a mat-tab-link disabled>Disabled Link</a>
+    </nav>
+  </header> -->

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PokeService } from './services/pokeService.service'
 
 @Component({
   selector: 'app-root',
@@ -9,11 +8,10 @@ import { PokeService } from './services/pokeService.service'
 export class AppComponent {
   title = 'Dungeons';
 
-  constructor(public pokeService: PokeService) {
-
+  constructor() {
   }
 
   ngOnInit() {
-    this.pokeService.getPokemonByName(2);
+    console.log('init application')
   }
 }
