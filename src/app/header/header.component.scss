@@ -1,0 +1,13 @@
+.header {
+    min-width: 100%;
+    min-height: 75px;
+  
+    &__logo {
+      height: 75px;
+    }
+  
+    &__button {
+      text-transform: capitalize;
+    }
+  
+  }

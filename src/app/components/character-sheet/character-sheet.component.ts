@@ -1,8 +1,8 @@
-import { Component, OnInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiceService } from '../../services/dice.service';
 import { DDService } from '../../services/dd.service';
-import { Subscription } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-character-sheet',
@@ -10,11 +10,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./character-sheet.component.scss']
 })
 export class CharacterSheetComponent implements OnInit {
+  @Output() select: EventEmitter<any>;
+
   public characterSheetForm: FormGroup;
   public bodyText: string;
   public abilityScoreIndex = 'str';
   public abilityScoreData: {};
   public characterClass: {};
+  public startingEquipment: {};
+  public selectedCharacterClass: string;
 
   constructor(private formBuilder: FormBuilder,
               private dandDservice: DDService,
@@ -51,13 +55,6 @@ export class CharacterSheetComponent implements OnInit {
       characterEquipment: '',
       disabled: [false]
     });
-
-    this.characterSheetForm.patchValue({characterSrength: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterDexterity: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterConstitution: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterIntelligence: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterWisdom: this.diceService.SixSidedThreeRolls()});
-    this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
@@ -73,6 +70,121 @@ export class CharacterSheetComponent implements OnInit {
     }, error => {
       console.log(error);
     });
+  }
+
+  onCharacterSelect(val) {
+    switch (this.selectedCharacterClass) {
+      case 'barbarian': {
+        console.log('barbarian selected');
+        this.dandDservice.getCharacterClass('barbarian')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(1)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'bard': {
+        console.log('bard selected');
+        this.dandDservice.getCharacterClass('bard')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(2)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'cleric': {
+        console.log('cleric selected');
+        this.dandDservice.getCharacterClass('cleric')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(3)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'druid': {
+        console.log('druid selected');
+        this.dandDservice.getCharacterClass('druid')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(4)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'fighter': {
+        console.log('fighter selected');
+        this.dandDservice.getCharacterClass('fighter')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(5)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'monk': {
+        console.log('monk selected');
+        this.dandDservice.getCharacterClass('monk')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(6)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'paladin': {
+        console.log('paladin selected');
+        this.dandDservice.getCharacterClass('paladin')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(7)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'ranger': {
+        console.log('ranger selected');
+        this.dandDservice.getCharacterClass('ranger')
+          .subscribe(data => this.characterClass = data);
+        break;
+      }
+      case 'rogue': {
+        console.log('rogue selected');
+        this.dandDservice.getCharacterClass('rogue')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(8)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'sorcerer': {
+        console.log('sorcerer selected');
+        this.dandDservice.getCharacterClass('sorcerer')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(9)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+      case 'warlock': {
+        console.log('warlock selected');
+        this.dandDservice.getCharacterClass('warlock')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(10)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+    }
+  }
+
+  strengthRoll() {
+    this.characterSheetForm.patchValue({characterSrength: this.diceService.SixSidedThreeRolls()});
+  }
+
+  dexterityRoll() {
+    this.characterSheetForm.patchValue({characterDexterity: this.diceService.SixSidedThreeRolls()});
+  }
+
+  constitutionRoll() {
+    this.characterSheetForm.patchValue({characterConstitution: this.diceService.SixSidedThreeRolls()});
+  }
+
+  intelligenceRoll() {
+    this.characterSheetForm.patchValue({characterIntelligence: this.diceService.SixSidedThreeRolls()});
+  }
+
+  wisdomRoll() {
+    this.characterSheetForm.patchValue({characterWisdom: this.diceService.SixSidedThreeRolls()});
+  }
+
+  charismaRoll()  {
+    this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
 
   addCharacter() {
@@ -141,6 +253,6 @@ export class CharacterSheetComponent implements OnInit {
   }
 
   addCharacterToDB() {
-    console.log('add character');
+    console.log('character added to db');
   }
 }
