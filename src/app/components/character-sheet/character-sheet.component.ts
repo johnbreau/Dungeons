@@ -46,16 +46,9 @@ export class CharacterSheetComponent implements OnInit {
                 var diffDays = Math.abs((today.getTime() - current) / (oneDay));
 
     localStorage.setItem('token', JSON.stringify(token));
-    this.dbService.add('people', { name: 'Presley', email: 'press86' }).subscribe(
-        () => {
-            // Do something after the value was added
-        },
-        error => {
-            console.log(error);
-        }
-    );
+
     // this.dbService.update('people', )
-    this.dbService.getAll('people').subscribe(
+    this.dbService.getAll('characters').subscribe(
         people => {
             console.log(people);
         },
@@ -226,9 +219,13 @@ export class CharacterSheetComponent implements OnInit {
     this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
 
+  hitPointsRoll()  {
+    this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
+  }
+
   addCharacter() {
     let newCharacter;
-    newCharacter = {characterName: this.characterSheetForm.get('characterName').value,
+      newCharacter = {characterName: this.characterSheetForm.get('characterName').value,
       characterClass : this.characterSheetForm.get('characterClass').value,
       characterSrength : this.characterSheetForm.get('characterSrength').value,
       characterDexterity : this.characterSheetForm.get('characterDexterity').value,
@@ -252,7 +249,7 @@ export class CharacterSheetComponent implements OnInit {
     this.dandDservice.getCharacterClass(newCharacter.characterClass)
     .subscribe((res: Response) => {
       this.characterClass = res;
-      console.log('data', this.characterClass);
+      console.log('data', res);
     }, error => {
       console.log(error);
     });
@@ -292,6 +289,34 @@ export class CharacterSheetComponent implements OnInit {
   }
 
   addCharacterToDB() {
-    console.log('character added to db');
+    this.dbService.add('characters', { 
+      characterName: this.characterSheetForm.get('characterName').value,
+      characterClass: this.characterSheetForm.get('characterClass').value,
+      characterLevel: this.characterSheetForm.get('characterLevel').value,
+      characterSrength : this.characterSheetForm.get('characterSrength').value,
+      characterDexterity : this.characterSheetForm.get('characterDexterity').value,
+      characterConstitution : this.characterSheetForm.get('characterConstitution').value,
+      characterIntelligence: this.characterSheetForm.get('characterIntelligence').value,
+      characterWisdom: this.characterSheetForm.get('characterWisdom').value,
+      characterCharisma: this.characterSheetForm.get('characterCharisma').value,
+      characterHitPoints: this.characterSheetForm.get('characterHitPoints').value,
+      characterExperiencePoints: this.characterSheetForm.get('characterExperiencePoints').value,
+      characterArmorClass: this.characterSheetForm.get('characterArmorClass').value,
+      // characterAlignment: this.characterSheetForm.get('characterAlignment').value,
+      characterSTMagicWand: this.characterSheetForm.get('characterSTMagicWand').value,
+      characterSTPoison: this.characterSheetForm.get('characterSTPoison').value,
+      characterSTParalysis: this.characterSheetForm.get('characterSTParalysis').value,
+      characterSTDragonBreath: this.characterSheetForm.get('characterSTDragonBreath').value,
+      characterSTSpells: this.characterSheetForm.get('characterSTSpells').value,
+      characterEquipment: this.characterSheetForm.get('characterEquipment').value,
+      // characterGold: this.characterSheetForm.get('characterHitGold').value,
+    }).subscribe(
+      () => {
+          // Do something after the value was added
+      },
+      error => {
+          console.log(error);
+      }
+  );
   }
 }

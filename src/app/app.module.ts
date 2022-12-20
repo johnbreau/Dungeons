@@ -65,11 +65,11 @@ export function migrationFactory() {
   // to be modified so a migrator for that version is not included.
   return {
     1: (db, transaction) => {
-      const store = transaction.objectStore('people');
+      const store = transaction.objectStore('characters');
       store.createIndex('country', 'country', { unique: false });
     },
     3: (db, transaction) => {
-      const store = transaction.objectStore('people');
+      const store = transaction.objectStore('characters');
       store.createIndex('age', 'age', { unique: false });
     }
   };
@@ -79,28 +79,18 @@ const dbConfig: DBConfig  = {
   name: 'MyDb',
   version: 3,
   objectStoresMeta: [{
-    store: 'people',
+    store: 'characters',
     storeConfig: { keyPath: 'id', autoIncrement: true },
     storeSchema: [
       { name: 'name', keypath: 'name', options: { unique: false } },
       { name: 'email', keypath: 'email', options: { unique: false } }
+      // { characterName: 'characterName', keypath: 'characterName', options: { unique: false } },
+      // { characterClass: 'characterClass', keypath: 'characterClass', options: { unique: false } },
+      // { characterLevel: 'characterLevel', keypath: 'characterLevel', options: { unique: false } },
+      // { characterStrength: 'characterStrength', keypath: 'characterStrength', options: { unique: false } },
+      // { characterDexterity: 'characterDexterity', keypath: 'characterDexterity', options: { unique: false } }
     ]
-  }, {
-    // animals added in version 2
-    store: 'animals',
-    storeConfig: { keyPath: 'id', autoIncrement: true },
-    storeSchema: [
-      { name: 'name', keypath: 'name', options: { unique: true } },
-    ]
-  },
-  {
-    // animals added in version 2
-    store: 'token',
-    storeConfig: { keyPath: 'id', autoIncrement: true },
-    storeSchema: [
-      { name: 'token', keypath: 'token', options: { unique: true } },
-    ]
-  }],
+  }], 
   // provide the migration factory to the DBConfig
   migrationFactory
 };
