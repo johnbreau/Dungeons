@@ -1,7 +1,5 @@
 <div class="character-sheet">
-  <mat-card-title>Character Sheet</mat-card-title>
   <form [formGroup]="characterSheetForm" class="character-sheet__form-container">
-
     <div class="character-sheet__form-section">
       <mat-form-field >
           <mat-label for="characterName">Character Name</mat-label>
@@ -162,7 +160,6 @@
           <button mat-stroked-button (click)="experienceLevelUp()">Experience level up</button>
         </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
     </div>
   
     <div class="character-sheet__form-row">
@@ -179,20 +176,17 @@
       <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
     </div>
 
-    <div class="character-sheet__form-row">
-      <div class="character-sheet__form-section">
-        <mat-form-field >
-          <mat-label for="characterAlignment">Alignment</mat-label>
-            <mat-select class="form-control" id="characterAlignment" formControlName="characterAlignment" required>
-                <option value="Lawful">Lawful</option>
-                <option value="Neutral">Neutral</option>
-                <option value="Chaotic">Chaotic</option>
-            </mat-select>
-          </mat-form-field>
-      </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    <div class="character-sheet__form-section">
+      <mat-form-field >
+        <mat-label for="characterAlignment">Character Alignment</mat-label>
+            <mat-select class="form-control" id="characterAlignment" formControlName="characterAlignment" [(ngModel)]="onSelectedCharacterAlignment" required>
+              <mat-option value="Lawful">Lawful</mat-option>
+                <mat-option value="Neutral">Neutral</mat-option>
+                <mat-option value="Chaotic">Chaotic</mat-option>
+              </mat-select>
+      </mat-form-field>
     </div>
-    
+
     <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field >

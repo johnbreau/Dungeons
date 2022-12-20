@@ -18,8 +18,10 @@ export class CharacterSheetComponent implements OnInit {
   public abilityScoreIndex = 'str';
   public abilityScoreData: {};
   public characterClass: {};
+  public characterAlignment: {};
   public startingEquipment: {};
   public selectedCharacterClass: string;
+  public selectedCharacterAlignment: string;
 
   constructor(private formBuilder: FormBuilder,
               private dandDservice: DDService,
@@ -28,10 +30,6 @@ export class CharacterSheetComponent implements OnInit {
 
   ngOnInit() {
     let today = new Date();
-    console.log(today.getDate());
-    console.log(today.getHours())
-    console.log(today.getMinutes())
-    console.log(today.getTime())
     const current = today.getTime();
     today.setHours(25)
     const token = {
@@ -41,13 +39,11 @@ export class CharacterSheetComponent implements OnInit {
 
     localStorage.setItem('token', JSON.stringify(token))
 
-
     var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
                 var diffDays = Math.abs((today.getTime() - current) / (oneDay));
 
     localStorage.setItem('token', JSON.stringify(token));
 
-    // this.dbService.update('people', )
     this.dbService.getAll('characters').subscribe(
         people => {
             console.log(people);
@@ -77,7 +73,10 @@ export class CharacterSheetComponent implements OnInit {
       characterExperiencePoints: '',
       characterGold: '',
       characterArmorClass: '',
-      characterAlignment: '',
+      characterAlignment: [
+        '',
+        Validators.compose([Validators.required])
+      ],
       characterLevel: '',
       characterSTPoison: '',
       characterSTMagicWand: '',
@@ -190,6 +189,26 @@ export class CharacterSheetComponent implements OnInit {
           .subscribe(data => this.characterClass = data);
         this.dandDservice.getStartingEquipment(10)
           .subscribe(data => this.startingEquipment = data);
+        break;
+      }
+    }
+  }
+
+  onSelectedCharacterAlignment(val) {
+    switch (this.selectedCharacterAlignment) {
+      case 'Lawful': {
+        this.dandDservice.getCharacterAlignment('Lawful')
+          .subscribe(data => this.characterAlignment = data);
+        break;
+      }
+      case 'Neutral': {
+        this.dandDservice.getCharacterAlignment('Neutral')
+          .subscribe(data => this.characterAlignment = data);
+        break;
+      }
+      case 'Chaotic': {
+        this.dandDservice.getCharacterAlignment('Chaotic')
+          .subscribe(data => this.characterAlignment = data);
         break;
       }
     }

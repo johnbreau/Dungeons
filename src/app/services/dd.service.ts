@@ -19,6 +19,12 @@ export class DDService {
     return this.http.get(this.baseURL + 'classes/' + index);
   }
 
+  getCharacterAlignment(index) {
+    let headers = new HttpHeaders();
+    headers = headers.append('Content-Type', 'application/json');
+    return this.http.get(this.baseURL + 'alignment/' + index);
+  }
+
   getStartingEquipment(index) {
     let headers = new HttpHeaders();
     headers = headers.append('Content-Type', 'application/json');
