@@ -156,10 +156,9 @@
                 class="form-control"
                 formControlName="characterExperiencePoints"
                 id="characterExperiencePoints">
-
-          <button mat-stroked-button (click)="experienceLevelUp()">Experience level up</button>
         </mat-form-field>
       </div>
+      <button mat-stroked-button (click)="experienceLevelUp()">Experience level up</button>
     </div>
   
     <div class="character-sheet__form-row">
@@ -173,7 +172,7 @@
                 id="characterArmorClass">
         </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="calculateAC()">Calculate Armor Class</button>
     </div>
 
     <div class="character-sheet__form-section">
@@ -187,19 +186,6 @@
       </mat-form-field>
     </div>
 
-    <div class="character-sheet__form-row">
-      <div class="character-sheet__form-section">
-        <mat-form-field >
-          <mat-label for="characterSTMagicWand">Saving Throws - Magic Wand</mat-label>
-          <input matInput
-                type="number"
-                class="form-control"
-                formControlName="characterSTMagicWand"
-                id="characterSTMagicWand">
-        </mat-form-field>
-      </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
-    </div>
 
     <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
@@ -212,7 +198,19 @@
                 id="characterSTPoison">
           </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+    </div>
+
+    <div class="character-sheet__form-row">
+      <div class="character-sheet__form-section">
+        <mat-form-field >
+          <mat-label for="characterSTMagicWand">Saving Throws - Magic Wand</mat-label>
+          <input matInput
+                type="number"
+                class="form-control"
+                formControlName="characterSTMagicWand"
+                id="characterSTMagicWand">
+        </mat-form-field>
+      </div>
     </div>
 
     <div class="character-sheet__form-row">
@@ -226,7 +224,6 @@
                 id="characterSTParalysis">
           </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
     </div>
 
     <div class="character-sheet__form-row">
@@ -240,7 +237,6 @@
                 id="characterSTDragonBreath">
           </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
     </div>
 
     <div class="character-sheet__form-row">
@@ -254,10 +250,9 @@
                 id="characterSTSpells">
         </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
     </div>
 
-    <div class="character-sheet__form-row">
+    <!-- <div class="character-sheet__form-row">
       <div class="character-sheet__form-section">
         <mat-form-field >
           <mat-label for="characterEquipment">Saving Throws - Equipment</mat-label>
@@ -268,8 +263,7 @@
                 id="characterEquipment">
           </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
-    </div>
+    </div> -->
       
         <div class="row px-3">
           <button class="character-sheet__form-row--button-submit" mat-stroked-button (click)="addCharacterToDB()">Save Character</button>

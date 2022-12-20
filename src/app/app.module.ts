@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DiceService } from './services/dice.service';
 import { DDService } from './services/dd.service';
 import { AbilityScoreAdjustmentService } from './services/abilityScoreAdjustment.service';
+import { SavingThrowAndModifierService } from './services/savingThrowService.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -177,6 +178,7 @@ const modules: any[] = [
   providers: [
     DiceService, 
     AbilityScoreAdjustmentService, 
+    SavingThrowAndModifierService,
     DDService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' }},
   ],

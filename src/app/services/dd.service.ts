@@ -30,4 +30,5 @@ export class DDService {
     headers = headers.append('Content-Type', 'application/json');
     return this.http.get(this.baseURL + 'starting-equipment/' + index);
   }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit, Output, EventEmitter } from '@angu
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DiceService } from '../../services/dice.service';
 import { DDService } from '../../services/dd.service';
+import { SavingThrowAndModifierService } from 'src/app/services/savingThrowService.service';
 import { Observable, of } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 
@@ -22,11 +23,14 @@ export class CharacterSheetComponent implements OnInit {
   public startingEquipment: {};
   public selectedCharacterClass: string;
   public selectedCharacterAlignment: string;
+  public characterArmorClass: string;
+  
 
   constructor(private formBuilder: FormBuilder,
               private dandDservice: DDService,
               private diceService: DiceService,
-              private dbService: NgxIndexedDBService) { }
+              private dbService: NgxIndexedDBService,
+              private savingThrowAndModifierService: SavingThrowAndModifierService) { }
 
   ngOnInit() {
     let today = new Date();
@@ -241,6 +245,25 @@ export class CharacterSheetComponent implements OnInit {
   hitPointsRoll()  {
     this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
   }
+
+  calculateAC() {
+    if (this.characterSheetForm.get('characterClass').value !== null) {
+      let AcCharacterClass = this.characterSheetForm.get('characterClass').value;
+      if (AcCharacterClass === 'barbarian') {
+        let barbarianAC = 10 + this.savingThrowAndModifierService.barbarianSavingThrowAdjustments.constitution;
+        this.characterSheetForm.patchValue({characterArmorClass: barbarianAC});
+      }
+      else if (AcCharacterClass === 'monk') {
+        let characterObject = this.savingThrowAndModifierService.monkSavingThrowAdjustments;
+        let monkAC = 10 + characterObject.constitution + characterObject.wisdom;
+        this.characterSheetForm.patchValue({characterArmorClass: monkAC});
+      } else {
+        this.characterSheetForm.patchValue({characterArmorClass: 10});
+      }
+    } else {
+    console.log('please choose a character class');
+  }
+}
 
   addCharacter() {
     let newCharacter;
