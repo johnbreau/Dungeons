@@ -33,6 +33,14 @@ export class CharacterSheetComponent implements OnInit {
               private savingThrowAndModifierService: SavingThrowAndModifierService) { }
 
   ngOnInit() {
+    let appContainer = document.querySelector('.app-container') as HTMLElement | null;
+    let parchmentContainer = document.querySelector('.parchment') as HTMLElement | null;
+    if (appContainer !== null && parchmentContainer !== null) {
+      console.log('pc',parchmentContainer);
+      let matchHeight = appContainer.offsetHeight.toString();
+      console.log('mc',matchHeight);
+      parchmentContainer.style.height = matchHeight + 'px';
+    }
     let today = new Date();
     const current = today.getTime();
     today.setHours(25)
@@ -195,6 +203,14 @@ export class CharacterSheetComponent implements OnInit {
           .subscribe(data => this.startingEquipment = data);
         break;
       }
+      case 'wizard': {
+        console.log('wizard selected');
+        this.dandDservice.getCharacterClass('wizard')
+          .subscribe(data => this.characterClass = data);
+        this.dandDservice.getStartingEquipment(10)
+          .subscribe(data => this.startingEquipment = data);
+        break;
+      }
     }
   }
 
@@ -243,10 +259,22 @@ export class CharacterSheetComponent implements OnInit {
   }
 
   hitPointsRoll()  {
-    this.characterSheetForm.patchValue({characterCharisma: this.diceService.SixSidedThreeRolls()});
+    if (this.characterSheetForm.get('characterClass').value !== null) {
+      console.log('hpr');
+      let charClass = this.characterSheetForm.get('characterClass').value;
+      if (charClass === 'sorcerer' || charClass === 'wizard') {
+        this.characterSheetForm.patchValue({characterHitPoints: this.diceService.sixSidedDieFunc() + this.savingThrowAndModifierService.barbarianSavingThrowAdjustments.constitution});
+      } else if (charClass === 'fighter' || charClass === 'paladin' || charClass === 'ranger') {
+        this.characterSheetForm.patchValue({characterHitPoints: this.diceService.tenSidedDieFunc() + this.savingThrowAndModifierService.barbarianSavingThrowAdjustments.constitution});
+      } else if (charClass === 'barbarian') {
+        this.characterSheetForm.patchValue({characterHitPoints: this.diceService.twelveSidedDieFunc() + this.savingThrowAndModifierService.barbarianSavingThrowAdjustments.constitution});
+      } else {
+        this.characterSheetForm.patchValue({characterHitPoints: this.diceService.eightSidedDieFunc() + this.savingThrowAndModifierService.barbarianSavingThrowAdjustments.constitution});
+      }
+    }
   }
 
-  calculateAC() {
+  calculateArmorClass() {
     if (this.characterSheetForm.get('characterClass').value !== null) {
       let AcCharacterClass = this.characterSheetForm.get('characterClass').value;
       if (AcCharacterClass === 'barbarian') {

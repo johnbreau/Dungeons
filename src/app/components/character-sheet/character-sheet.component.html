@@ -16,7 +16,7 @@
         <mat-label for="characterClass">Character Class</mat-label>
           <!-- <mat-select class="form-control" id="characterClass" formControlName="characterClass" [(ngModel)]="selectedCharacterClass" (ngModelChange)="onCharacterSelect()" required> -->
             <mat-select class="form-control" id="characterClass" formControlName="characterClass" [(ngModel)]="selectedCharacterClass" required> 
-            <mat-option value="barbarian">Barbarian</mat-option>
+              <mat-option value="barbarian">Barbarian</mat-option>
               <mat-option value="bard">Bard</mat-option>
               <mat-option value="cleric">Cleric</mat-option>
               <mat-option value="druid">Druid</mat-option>
@@ -27,6 +27,7 @@
               <mat-option value="rogue">Rogue</mat-option>
               <mat-option value="sorcerer">Sorcerer</mat-option>
               <mat-option value="warlock">Warlock</mat-option>
+              <mat-option value="wizard">Wizard</mat-option>
           </mat-select>
       </mat-form-field>
     </div>
@@ -144,7 +145,7 @@
                 id="characterHitPoints">
           </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="constitutionRoll()">Roll</button>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="hitPointsRoll()">Roll</button>
     </div>
 
     <div class="character-sheet__form-row">
@@ -172,7 +173,7 @@
                 id="characterArmorClass">
         </mat-form-field>
       </div>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="calculateAC()">Calculate Armor Class</button>
+      <button class="character-sheet__form-row--button" mat-stroked-button (click)="calculateArmorClass()">Calculate Armor Class</button>
     </div>
 
     <div class="character-sheet__form-section">
