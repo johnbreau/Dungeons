@@ -19,14 +19,7 @@ export class CharacterDisplayComponent {
     private dbService: NgxIndexedDBService) { }
 
     ngOnInit() {
-      let openRequest = indexedDB.open('charactersDb');
       this.myCharacters = [];
-
-      openRequest.onsuccess = function() {
-        let db = openRequest.result;
-        console.log('db', db);
-        // continue working with database using db object
-      };
 
       this.characterGetForm = this.formBuilder.group({
         name: [

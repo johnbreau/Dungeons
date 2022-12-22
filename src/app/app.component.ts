@@ -12,6 +12,6 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    console.log('init application')
+    console.log('DUNGEONS')
   }
 }
