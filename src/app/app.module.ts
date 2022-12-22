@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router'
+import { NgxIndexedDBModule, DBConfig } from 'ngx-indexed-db';
 
 import { AppComponent } from './app.component';
 import { CharacterSheetComponent } from './components/character-sheet/character-sheet.component';
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DiceService } from './services/dice.service';
 import { DDService } from './services/dd.service';
 import { AbilityScoreAdjustmentService } from './services/abilityScoreAdjustment.service';
+import { SavingThrowAndModifierService } from './services/savingThrowService.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { ObserversModule } from '@angular/cdk/observers';
@@ -55,14 +57,79 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
 import { MapBuilderComponent } from './components/map-builder/map-builder.component';
+import { CharacterDisplayComponent } from './components/character-display/character-display.component';
 
 // import { MatMomentDateModule } from '@angular/material-moment-adapter';
+
+// // Ahead of time compiles requires an exported function for factories
+// export function migrationFactory() {
+//   // The animal table was added with version 2 but none of the existing tables or data needed
+//   // to be modified so a migrator for that version is not included.
+//   return {
+//     1: (db, transaction) => {
+//       const store = transaction.objectStore('characters');
+//       store.createIndex('country', 'country', { unique: false });
+//     },
+//     3: (db, transaction) => {
+//       const store = transaction.objectStore('characters');
+//       store.createIndex('age', 'age', { unique: false });
+//     }
+//   };
+// }
+
+// const dbConfig: DBConfig  = {
+//   name: 'MyDb',
+//   version: 3,
+//   objectStoresMeta: [{
+//     store: 'characters',
+//     storeConfig: { keyPath: 'id', autoIncrement: true },
+//     storeSchema: [
+//       { name: 'name', keypath: 'name', options: { unique: false } },
+//       { name: 'email', keypath: 'email', options: { unique: false } }
+//       // { characterName: 'characterName', keypath: 'characterName', options: { unique: false } },
+//       // { characterClass: 'characterClass', keypath: 'characterClass', options: { unique: false } },
+//       // { characterLevel: 'characterLevel', keypath: 'characterLevel', options: { unique: false } },
+//       // { characterStrength: 'characterStrength', keypath: 'characterStrength', options: { unique: false } },
+//       // { characterDexterity: 'characterDexterity', keypath: 'characterDexterity', options: { unique: false } }
+//     ]
+//   }], 
+//   // provide the migration factory to the DBConfig
+//   migrationFactory
+// };
+const dbConfig: DBConfig  = {
+  name: 'DungeonsCharacterRecords',
+  version: 1,
+  objectStoresMeta: [{
+    store: 'charactersDb',
+    storeConfig: { keyPath: 'id', autoIncrement: true },
+    storeSchema: [
+      { name: 'characterName', keypath: 'characterName', options: { unique: false } },
+      { name: 'characterClass', keypath: 'characterClass', options: { unique: false } },
+      { name: 'characterLevel', keypath: 'characterLevel', options: { unique: false } },
+      { name: 'characterStrength', keypath: 'characterStrength', options: { unique: false } },
+      { name: 'characterDexterity', keypath: 'characterDexterity', options: { unique: false } },
+      { name: 'characterConstitution', keypath: 'characterConstitution', options: { unique: false } },
+      { name: 'characterIntelligence', keypath: 'characterIntelligence', options: { unique: false } },
+      { name: 'characterWisdom', keypath: 'characterWisdom', options: { unique: false } },
+      { name: 'characterCharisma', keypath: 'characterCharisma', options: { unique: false } },
+      { name: 'characterHitPoints', keypath: 'characterHitPoints', options: { unique: false } },
+      { name: 'characterArmorClass', keypath: 'characterArmorClass', options: { unique: false } },
+      { name: 'characterSTMagicWand', keypath: 'characterSTMagicWand', options: { unique: false } },
+      { name: 'characterSTPoison', keypath: 'characterSTPoison', options: { unique: false } },
+      { name: 'characterSTParalysis', keypath: 'characterSTParalysis', options: { unique: false } },
+      { name: 'characterSTDragonBreath', keypath: 'characterSTDragonBreath', options: { unique: false } },
+      { name: 'characterSTSpells', keypath: 'characterSTSpells', options: { unique: false } },
+      { name: 'characterEquipment', keypath: 'characterEquipment', options: { unique: false } }
+    ]
+  }]
+};
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'character', component: CharacterSheetComponent },
   { path: 'campaign', component: CampaignComponent },
   { path: 'map', component: MapBuilderComponent },
+  { path: 'character-display', component: CharacterDisplayComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ]
 
@@ -121,6 +188,7 @@ const modules: any[] = [
     CampaignComponent,
     HomeComponent,
     MapBuilderComponent,
+    CharacterDisplayComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +198,7 @@ const modules: any[] = [
     BrowserAnimationsModule,
     BrowserModule, 
     RouterModule.forRoot(routes),
+    NgxIndexedDBModule.forRoot(dbConfig),
     ...modules,
   ],
     exports: [
@@ -139,6 +208,7 @@ const modules: any[] = [
   providers: [
     DiceService, 
     AbilityScoreAdjustmentService, 
+    SavingThrowAndModifierService,
     DDService,
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' }},
   ],
