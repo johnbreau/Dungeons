@@ -1,7 +1,7 @@
 export interface Character {
-    characterName: string;
-    characterClass: string;
-    characterLevel: number;
+    characterName?: string;
+    characterClass?: string;
+    characterLevel?: number;
     characterSrength?: number;
     characterDexterity?: number;
     characterConstitution?: number;
@@ -17,5 +17,4 @@ export interface Character {
     characterSTDragonBreath?: number;
     characterSTSpells?: number;
     characterEquipment?: number;
-
 }

@@ -13,3 +13,6 @@
     </div>
     </form>
     </div>
+    <div *ngFor="let character of myCharacters; let i = index">
+        <li>{{character.characterName}}</li>
+    </div>

@@ -12,6 +12,7 @@ import { Character } from '../../character';
 export class CharacterDisplayComponent {
 
   public characterGetForm: FormGroup;
+  public myCharacters: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -19,6 +20,7 @@ export class CharacterDisplayComponent {
 
     ngOnInit() {
       let openRequest = indexedDB.open('charactersDb');
+      this.myCharacters = [];
 
       openRequest.onsuccess = function() {
         let db = openRequest.result;
@@ -33,14 +35,12 @@ export class CharacterDisplayComponent {
         ]
       })
 
-      this.dbService.getAll('charactersDb').subscribe(
-        characters => {
-            console.log('characterDB Object Store:', characters);
-        },
-        error => {
-            console.log(error);
-        }
-    );
+    this.dbService.getAll('charactersDb').subscribe(results => {
+      results.forEach((result,i)=>{
+       console.log('rezzzult', result, 'myChar', this.myCharacters);
+       this.myCharacters.push(result);
+      });
+   });
   }
 
   getCharacterfromDb() {

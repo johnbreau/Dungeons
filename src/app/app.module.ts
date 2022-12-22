@@ -59,43 +59,6 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MapBuilderComponent } from './components/map-builder/map-builder.component';
 import { CharacterDisplayComponent } from './components/character-display/character-display.component';
 
-// import { MatMomentDateModule } from '@angular/material-moment-adapter';
-
-// // Ahead of time compiles requires an exported function for factories
-// export function migrationFactory() {
-//   // The animal table was added with version 2 but none of the existing tables or data needed
-//   // to be modified so a migrator for that version is not included.
-//   return {
-//     1: (db, transaction) => {
-//       const store = transaction.objectStore('characters');
-//       store.createIndex('country', 'country', { unique: false });
-//     },
-//     3: (db, transaction) => {
-//       const store = transaction.objectStore('characters');
-//       store.createIndex('age', 'age', { unique: false });
-//     }
-//   };
-// }
-
-// const dbConfig: DBConfig  = {
-//   name: 'MyDb',
-//   version: 3,
-//   objectStoresMeta: [{
-//     store: 'characters',
-//     storeConfig: { keyPath: 'id', autoIncrement: true },
-//     storeSchema: [
-//       { name: 'name', keypath: 'name', options: { unique: false } },
-//       { name: 'email', keypath: 'email', options: { unique: false } }
-//       // { characterName: 'characterName', keypath: 'characterName', options: { unique: false } },
-//       // { characterClass: 'characterClass', keypath: 'characterClass', options: { unique: false } },
-//       // { characterLevel: 'characterLevel', keypath: 'characterLevel', options: { unique: false } },
-//       // { characterStrength: 'characterStrength', keypath: 'characterStrength', options: { unique: false } },
-//       // { characterDexterity: 'characterDexterity', keypath: 'characterDexterity', options: { unique: false } }
-//     ]
-//   }], 
-//   // provide the migration factory to the DBConfig
-//   migrationFactory
-// };
 const dbConfig: DBConfig  = {
   name: 'DungeonsCharacterRecords',
   version: 1,
