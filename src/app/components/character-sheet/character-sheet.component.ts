@@ -50,15 +50,6 @@ export class CharacterSheetComponent implements OnInit {
 
     localStorage.setItem('token', JSON.stringify(token));
 
-    this.dbService.getAll('characters').subscribe(
-        people => {
-            console.log(people);
-        },
-        error => {
-            console.log(error);
-        }
-    );
-
     this.characterSheetForm = this.formBuilder.group({
       characterName: [
         '',
@@ -259,7 +250,7 @@ export class CharacterSheetComponent implements OnInit {
 }
 
   addCharacterToDB() {
-    this.dbService.add('characters', { 
+    this.dbService.add('charactersDb', { 
       characterName: this.characterSheetForm.get('characterName').value,
       characterClass: this.characterSheetForm.get('characterClass').value,
       characterLevel: this.characterSheetForm.get('characterLevel').value,

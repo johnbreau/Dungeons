@@ -96,21 +96,11 @@ import { CharacterDisplayComponent } from './components/character-display/charac
 //   // provide the migration factory to the DBConfig
 //   migrationFactory
 // };
-
-export function migrationFactory() {
-  return {
-    1: (db, transaction) => {
-      const store = transaction.objectStore('characters');
-      store.createIndex('characterName', 'characterName', { unique: false });
-    }
-  };
-}
-
 const dbConfig: DBConfig  = {
-  name: 'DungeonsCharacterStore',
+  name: 'DungeonsCharacterRecords',
   version: 1,
   objectStoresMeta: [{
-    store: 'characters',
+    store: 'charactersDb',
     storeConfig: { keyPath: 'id', autoIncrement: true },
     storeSchema: [
       { name: 'characterName', keypath: 'characterName', options: { unique: false } },
@@ -131,8 +121,7 @@ const dbConfig: DBConfig  = {
       { name: 'characterSTSpells', keypath: 'characterSTSpells', options: { unique: false } },
       { name: 'characterEquipment', keypath: 'characterEquipment', options: { unique: false } }
     ]
-  }],
-  migrationFactory
+  }]
 };
 
 const routes: Routes = [
