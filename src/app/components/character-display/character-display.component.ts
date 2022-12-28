@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { filter } from 'rxjs';
+import { filter, Observable } from 'rxjs';
 import { Character } from '../../character';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-character-display',
@@ -12,15 +13,36 @@ import { Character } from '../../character';
 export class CharacterDisplayComponent {
 
   public characterGetForm: FormGroup;
-  public myCharacters: any[];
+  dataSource = new MatTableDataSource<Character>();
+
+  displayedColumns: string[] = [
+    'characterName',
+    'characterClass',
+    'characterLevel',
+    'characterSrength',
+    'characterDexterity',
+    'characterConstitution',
+    'characterIntelligence',
+    'characterWisdom',
+    'characterCharisma',
+    'characterHitPoints',
+    'characterExperiencePoints',
+    'characterArmorClass',
+    'characterSTMagicWand',
+    'characterSTPoison',
+    'characterSTParalysis',
+    'characterSTDragonBreath',
+    'characterSTSpells',
+    'characterEquipment'
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
     private dbService: NgxIndexedDBService) { }
 
-    ngOnInit() {
-      this.myCharacters = [];
+    ngAfterViewInit() {}
 
+    ngOnInit() {
       this.characterGetForm = this.formBuilder.group({
         name: [
           '',
@@ -28,12 +50,22 @@ export class CharacterDisplayComponent {
         ]
       })
 
-    this.dbService.getAll('charactersDb').subscribe(results => {
-      results.forEach((result,i)=>{
-       console.log('rezzzult', result, 'myChar', this.myCharacters);
-       this.myCharacters.push(result);
-      });
-   });
+      this.getCharacters().subscribe(res => {
+        this.dataSource.data = res;
+      })
+
+  //   this.dbService.getAll('charactersDb').subscribe(results => {
+  //     results.forEach((result,i)=>{
+  //      console.log('rezzzult', result, 'myChar', this.myCharacters);
+  //      this.myCharacters.push(result);
+  //     });
+  //  });
+  //   this.dataSource = new MatTableDataSource(this.myCharacters);
+  //   console.log('ds', this.dataSource.filteredData);
+  }
+
+  getCharacters(): Observable<Character[]> {
+    return this.dbService.getAll<Character>('charactersDb');
   }
 
   getCharacterfromDb() {
