@@ -1,24 +1,5 @@
-<!-- <div>
-    <form [formGroup]="characterGetForm" class="character-sheet__form-container">
-    <div class="character-sheet__form-section">
-      <mat-form-field >
-          <mat-label for="characterName">Character Name</mat-label>
-          <input matInput
-                type="text"
-                class="form-control"
-                formControlName="name"
-                id="characterName" required>
-      </mat-form-field>
-      <button class="character-sheet__form-row--button" mat-stroked-button (click)="getCharacterfromDb()">Roll</button>
-    </div>
-    </form>
-    </div>
-    <table mat-table>
-         <tr *ngFor="let character of myCharacters; let i = index">
-        <td>{{character.characterName}}</td>
-    </tr>
-    </table> -->
-
+<div class="characterDisplayTableContainer">
+  <h4>Saved Characters</h4>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
         <th mat-header-cell *matHeaderCellDef> {{column}} </th>
@@ -26,4 +7,15 @@
       </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let characterrow; columns: displayedColumns;"></tr>
+      <tr mat-row
+      (click)="clickedRows.add(row)"
+      [class.demo-row-is-clicked]="clickedRows.has(row)"
+      *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+   
+    <ul>
+      <li *ngFor="let clickedRow of clickedRows">
+        Clicked on {{clickedRow.value}}
+      </li>
+    </ul>
+  </div>

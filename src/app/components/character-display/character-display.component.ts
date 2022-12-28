@@ -14,26 +14,27 @@ export class CharacterDisplayComponent {
 
   public characterGetForm: FormGroup;
   dataSource = new MatTableDataSource<Character>();
+  clickedRows = new Set<Character>();
 
   displayedColumns: string[] = [
     'characterName',
     'characterClass',
     'characterLevel',
-    'characterSrength',
-    'characterDexterity',
-    'characterConstitution',
-    'characterIntelligence',
-    'characterWisdom',
-    'characterCharisma',
-    'characterHitPoints',
-    'characterExperiencePoints',
-    'characterArmorClass',
-    'characterSTMagicWand',
-    'characterSTPoison',
-    'characterSTParalysis',
-    'characterSTDragonBreath',
-    'characterSTSpells',
-    'characterEquipment'
+    // 'characterSrength',
+    // 'characterDexterity',
+    // 'characterConstitution',
+    // 'characterIntelligence',
+    // 'characterWisdom',
+    // 'characterCharisma',
+    // 'characterHitPoints',
+    // 'characterExperiencePoints',
+    // 'characterArmorClass',
+    // 'characterSTMagicWand',
+    // 'characterSTPoison',
+    // 'characterSTParalysis',
+    // 'characterSTDragonBreath',
+    // 'characterSTSpells',
+    // 'characterEquipment'
   ];
 
   constructor(
@@ -53,21 +54,13 @@ export class CharacterDisplayComponent {
       this.getCharacters().subscribe(res => {
         this.dataSource.data = res;
       })
-
-  //   this.dbService.getAll('charactersDb').subscribe(results => {
-  //     results.forEach((result,i)=>{
-  //      console.log('rezzzult', result, 'myChar', this.myCharacters);
-  //      this.myCharacters.push(result);
-  //     });
-  //  });
-  //   this.dataSource = new MatTableDataSource(this.myCharacters);
-  //   console.log('ds', this.dataSource.filteredData);
   }
 
   getCharacters(): Observable<Character[]> {
     return this.dbService.getAll<Character>('charactersDb');
   }
 
+  // use this function when character is clicked
   getCharacterfromDb() {
     let characterName = this.characterGetForm.get('name').value;
     this.dbService.getByKey('charactersDb', 1).subscribe((character) => {
