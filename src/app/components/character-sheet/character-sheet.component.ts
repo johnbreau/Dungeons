@@ -6,6 +6,7 @@ import { SavingThrowAndModifierService } from 'src/app/services/savingThrowServi
 import { Observable, of } from 'rxjs';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { Router } from '@angular/router'
+import { Character } from '../../character';
 
 @Component({
   selector: 'app-character-sheet',
@@ -249,8 +250,16 @@ export class CharacterSheetComponent implements OnInit {
   }
 }
 
+  getCharacters(): Observable<Character[]> {
+    return this.dbService.getAll<Character>('charactersDb');
+  }
+
   skipCharacterEntry() {
-    this.router.navigate(['/', 'character-display']);
+    this.getCharacters().subscribe(res => {
+      if (res.length > 0) {
+          this.router.navigate(['/', 'character-display']);
+      }
+    })
   }
 
   addCharacterToDB() {
