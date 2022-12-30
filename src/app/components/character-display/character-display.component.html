@@ -1,4 +1,4 @@
-<div class="characterDisplayTableContainer">
+<div *ngIf="!hideTable" class="characterDisplayTableContainer">
   <h4>Saved Characters</h4>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
@@ -9,3 +9,8 @@
       <tr mat-row (click)="selectCharacter($event)" *matRowDef="let characterrow; columns: displayedColumns;"></tr>
     </table>
   </div>
+  <div class="characterDisplaySingleCharacter">
+    <h4>Selected Character</h4>
+    <div>Name: {{selectedCharacter.characterName}}</div>
+    <div>Class: {{selectedCharacter.characterClass}}</div>
+    </div>

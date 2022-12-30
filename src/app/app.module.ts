@@ -89,7 +89,7 @@ const dbConfig: DBConfig  = {
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'character', component: CharacterSheetComponent },
+  { path: 'player-start', component: CharacterSheetComponent },
   { path: 'campaign', component: CampaignComponent },
   { path: 'map', component: MapBuilderComponent },
   { path: 'character-display', component: CharacterDisplayComponent },

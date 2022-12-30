@@ -1,4 +1,7 @@
 <div class="character-sheet">
+    <section class="characterCreationButton">
+      <button mat-flat-button color="primary" (click)="skipCharacterEntry()">Skip Character Creation</button>
+    </section>
   <form [formGroup]="characterSheetForm" class="character-sheet__form-container">
     <div class="character-sheet__form-section">
       <mat-form-field >

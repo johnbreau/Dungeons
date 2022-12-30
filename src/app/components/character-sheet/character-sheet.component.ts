@@ -249,6 +249,10 @@ export class CharacterSheetComponent implements OnInit {
   }
 }
 
+  skipCharacterEntry() {
+    this.router.navigate(['/', 'character-display']);
+  }
+
   addCharacterToDB() {
     this.dbService.add('charactersDb', { 
       characterName: this.characterSheetForm.get('characterName').value,

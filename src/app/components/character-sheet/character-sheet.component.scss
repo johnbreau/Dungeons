@@ -17,3 +17,10 @@
     margin: 1em 0;
   }
 }
+
+.characterCreationButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 130px;
+}

@@ -12,7 +12,9 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class CharacterDisplayComponent {
 
+  public hideTable: boolean = false;
   public characterGetForm: FormGroup;
+  public selectedCharacter = <Character>{};
   dataSource = new MatTableDataSource<Character>();
 
   displayedColumns: string[] = [
@@ -38,7 +40,8 @@ export class CharacterDisplayComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private dbService: NgxIndexedDBService) { }
+    private dbService: NgxIndexedDBService,
+    ) { }
 
     ngAfterViewInit() {}
 
@@ -59,12 +62,17 @@ export class CharacterDisplayComponent {
     return this.dbService.getAll<Character>('charactersDb');
   }
 
+  hideAllCharactersTable() {
+    this.hideTable = true;
+    console.log('closed');
+  }
+
    selectCharacter(event) {
-    console.log('clicked', event.currentTarget.firstChild.innerText);
     let localCharacter = event.currentTarget.firstChild.innerText;
     this.dataSource.data.forEach(character => {
       if (character.characterName === localCharacter){
-        console.log(character);
+        this.selectedCharacter = character;
+        this.hideAllCharactersTable(); 
       }
     });
    }
