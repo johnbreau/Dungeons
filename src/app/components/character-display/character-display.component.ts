@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxIndexedDBService } from 'ngx-indexed-db';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { filter, Observable } from 'rxjs';
+import { ConnectableObservable, filter, Observable } from 'rxjs';
 import { Character } from '../../character';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -14,7 +14,6 @@ export class CharacterDisplayComponent {
 
   public characterGetForm: FormGroup;
   dataSource = new MatTableDataSource<Character>();
-  clickedRows = new Set<Character>();
 
   displayedColumns: string[] = [
     'characterName',
@@ -60,11 +59,13 @@ export class CharacterDisplayComponent {
     return this.dbService.getAll<Character>('charactersDb');
   }
 
-  // use this function when character is clicked
-  getCharacterfromDb() {
-    let characterName = this.characterGetForm.get('name').value;
-    this.dbService.getByKey('charactersDb', 1).subscribe((character) => {
-      console.log('subscribe', character);
+   selectCharacter(event) {
+    console.log('clicked', event.currentTarget.firstChild.innerText);
+    let localCharacter = event.currentTarget.firstChild.innerText;
+    this.dataSource.data.forEach(character => {
+      if (character.characterName === localCharacter){
+        console.log(character);
+      }
     });
-  }
+   }
 }
